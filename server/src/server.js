@@ -1,17 +1,16 @@
 import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
-
-dotenv.config();
+import morgan from "morgan";
+import bodyParser from "body-parser";
+import recipeBookViews from "./views/recipe.views";
 
 const app = express();
-app.use(cors());
-const PORT = process.env.PORT || 5000;
+const PORT = 8000;
 
-app.get("/", (req, res) => {
-  res.send("Test");
-});
+app.use(morgan("dev"));
+app.use(bodyParser.json());
+
+app.use(recipeBookViews);
 
 app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
