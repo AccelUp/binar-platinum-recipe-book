@@ -1,5 +1,5 @@
-const db = require("../config/db");
-const { v4 } = require("uuid");
+import db from "../config/db";
+import { v4 } from "uuid";
 
 class RecipeModels {
   //Post
@@ -27,4 +27,4 @@ class RecipeModels {
   }
 }
 
-module.exports = RecipeModels;
+export default RecipeModels;

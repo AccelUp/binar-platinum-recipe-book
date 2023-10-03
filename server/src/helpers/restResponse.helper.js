@@ -11,7 +11,4 @@ function responseError(err) {
   };
 }
 
-module.exports = {
-  responseError,
-  responseOk,
-};
+export { responseError, responseOk };

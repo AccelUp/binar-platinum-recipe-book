@@ -1,5 +1,5 @@
-const CookBookModels = require("../models/recipe.models");
-const { responseOk, responseError } = require("../helpers/restResponse.helper");
+import CookBookModels from "../models/recipe.models";
+import { responseOk, responseError } from "../helpers/restResponse.helper";
 
 const models = new CookBookModels();
 
@@ -95,10 +95,4 @@ async function deleteRecipesById(req, res) {
   }
 }
 
-module.exports = {
-  getRecipes,
-  getRecipesById,
-  addRecipes,
-  editRecipesById,
-  deleteRecipesById,
-};
+export { getRecipes, getRecipesById, addRecipes, editRecipesById, deleteRecipesById };

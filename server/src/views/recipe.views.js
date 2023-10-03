@@ -1,15 +1,13 @@
-const express = require("express");
-const router = express.Router();
-const controller = require("../controllers/recipe.controllers");
+import express from "express";
+import controller from "../controllers/recipe.controllers";
 
-// routing group
+const router = express.Router();
 const prefixPath = "api/v1/recipebook";
 
-// register router
-router.get(`/${prefixPath}/recipes`, controller.getRecipes); //melihat semua resep
-router.get(`/${prefixPath}/recipes/:id`, controller.getRecipesById); //melihat resep berdasarkan id
-router.post(`/${prefixPath}/add`, controller.addRecipes); //menambah resep
-router.put(`/${prefixPath}/edit/:id`, controller.editRecipesById); //mengedit resep
-router.delete(`/${prefixPath}/delete/:id`, controller.deleteRecipesById); //menghapus resep
+router.get(`/${prefixPath}/recipes`, controller.getRecipes);
+router.get(`/${prefixPath}/recipes/:id`, controller.getRecipesById);
+router.post(`/${prefixPath}/add`, controller.addRecipes);
+router.put(`/${prefixPath}/edit/:id`, controller.editRecipesById);
+router.delete(`/${prefixPath}/delete/:id`, controller.deleteRecipesById);
 
-module.exports = router;
+export default router;
