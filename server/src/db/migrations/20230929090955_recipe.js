@@ -2,7 +2,7 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = function (knex) {
+export async function up(knex) {
   return knex.schema.createTable("recipe", (table) => {
     table.uuid("id").unique().notNullable().primary();
     table.text("title").notNullable();
@@ -12,12 +12,12 @@ exports.up = function (knex) {
     table.string("category").notNullable();
     table.timestamps(true, true);
   });
-};
+}
 
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function (knex) {
+export async function down(knex) {
   return knex.schema.dropTable("recipe");
-};
+}

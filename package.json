@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "devStart": "concurrently \"cd client && yarn dev\" \"cd server && yarn start\" "
+  },
+  "name": "binar-platinum-recipe-book",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/AccelUp/binar-platinum-recipe-book.git",
+  "author": "AccelUp <risetyudhaadhi16@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^8.2.1"
+  }
+}

@@ -3,10 +3,13 @@
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
-module.exports = {
+export default {
   development: {
-    client: "postgres",
-    connection: "postgres://root:root@localhost:5432/recipe-platinum",
+    client: "postgresql",
+    connection: "postgresql://postgres:ace16@localhost:5432/recipe_platinum",
+  },
+  migrations: {
+    directory: "./src/db/migrations",
   },
 
   staging: {
@@ -20,9 +23,6 @@ module.exports = {
       min: 2,
       max: 10,
     },
-    migrations: {
-      tableName: "knex_migrations",
-    },
   },
 
   production: {
@@ -35,9 +35,6 @@ module.exports = {
     pool: {
       min: 2,
       max: 10,
-    },
-    migrations: {
-      tableName: "knex_migrations",
     },
   },
 };
