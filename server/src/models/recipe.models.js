@@ -1,10 +1,17 @@
-import db from "../config/db";
+import db from "../config/db.js";
 import { v4 } from "uuid";
 
 class RecipeModels {
   //Post
   async insert(title, ingredients, instruction, caption, category) {
-    const newRecipe = { id: v4(), title, ingredients, instruction, caption, category };
+    const newRecipe = {
+      id: v4(),
+      title,
+      ingredients,
+      instruction,
+      caption,
+      category,
+    };
     return await db.insert(newRecipe).into("recipe").returning("*"); //.returning
   }
   //Get

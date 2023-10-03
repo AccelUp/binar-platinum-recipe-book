@@ -1,5 +1,5 @@
-import CookBookModels from "../models/recipe.models";
-import { responseOk, responseError } from "../helpers/restResponse.helper";
+import CookBookModels from "../models/recipe.models.js";
+import { responseOk, responseError } from "../helpers/restResponse.helper.js";
 
 const models = new CookBookModels();
 
@@ -14,7 +14,9 @@ async function getRecipes(_, res) {
 
     return res.status(200).json(responseOk("Success get all link", data));
   } catch (error) {
-    return res.status(500).json(responseError("Error while fetching recipes", error.message));
+    return res
+      .status(500)
+      .json(responseError("Error while fetching recipes", error.message));
   }
 }
 
@@ -30,7 +32,9 @@ async function getRecipesById(req, res) {
 
     return res.status(200).json(responseOk("Success get link by id", data));
   } catch (error) {
-    return res.status(500).json(responseError("Error while fetching recipe by id", error.message));
+    return res
+      .status(500)
+      .json(responseError("Error while fetching recipe by id", error.message));
   }
 }
 
@@ -55,10 +59,18 @@ async function addRecipes(req, res) {
       return res.status(400).json(responseError("Category is required"));
     }
 
-    const data = await models.insert(body.title, body.ingredients, body.instruction, body.caption, body.category);
+    const data = await models.insert(
+      body.title,
+      body.ingredients,
+      body.instruction,
+      body.caption,
+      body.category
+    );
     return res.status(201).json(responseOk("Success add new recipe", data));
   } catch (error) {
-    return res.status(500).json(responseError("Error while adding new recipe", error.message));
+    return res
+      .status(500)
+      .json(responseError("Error while adding new recipe", error.message));
   }
 }
 
@@ -68,8 +80,16 @@ async function editRecipesById(req, res) {
     const id = req.params["id"];
     const body = req.body;
     if (!id) return res.status(400).json(responseError("ID is required"));
-    if (!body.title && !body.ingredients && !body.instruction && !body.caption && !body.category) {
-      return res.status(400).json(responseError("At least one field is required to update"));
+    if (
+      !body.title &&
+      !body.ingredients &&
+      !body.instruction &&
+      !body.caption &&
+      !body.category
+    ) {
+      return res
+        .status(400)
+        .json(responseError("At least one field is required to update"));
     }
 
     const data = await models.edit(id, body);
@@ -77,7 +97,9 @@ async function editRecipesById(req, res) {
 
     return res.status(200).json(responseOk(`Success update ${id}`, data));
   } catch (error) {
-    return res.status(500).json(responseError("Error while updating recipe", error.message));
+    return res
+      .status(500)
+      .json(responseError("Error while updating recipe", error.message));
   }
 }
 //menghapus resep berdasarkan nama resep
@@ -91,8 +113,16 @@ async function deleteRecipesById(req, res) {
 
     return res.status(200).json(responseOk(`Success delete ${id}`, data));
   } catch (error) {
-    return res.status(500).json(responseError("something went wrong", error.message));
+    return res
+      .status(500)
+      .json(responseError("something went wrong", error.message));
   }
 }
 
-export { getRecipes, getRecipesById, addRecipes, editRecipesById, deleteRecipesById };
+export {
+  getRecipes,
+  getRecipesById,
+  addRecipes,
+  editRecipesById,
+  deleteRecipesById,
+};

@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import bodyParser from "body-parser";
-import recipeBookViews from "./views/recipe.views";
+import router from "./views/recipe.views.js";
 
 const app = express();
 const PORT = 8000;
@@ -9,7 +9,11 @@ const PORT = 8000;
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 
-app.use(recipeBookViews);
+// app.get("/", (req, res) => {
+//   res.send("Hello");
+// });
+
+app.use("/", router);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
