@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import bodyParser from "body-parser";
-import router from "./views/recipe.views.js";
+import router from "./src/views/recipe.views.js";
 
 const app = express();
 const PORT = 8000;

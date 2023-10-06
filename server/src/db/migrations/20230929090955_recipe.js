@@ -10,6 +10,7 @@ export async function up(knex) {
     table.text("instruction").notNullable();
     table.string("caption").notNullable();
     table.string("category").notNullable();
+    table.text("img_filename");
     table.timestamps(true, true);
   });
 }

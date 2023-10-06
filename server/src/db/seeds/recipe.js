@@ -11,13 +11,12 @@ export const seed = async function (knex) {
     {
       id: uuidv4(),
       title: "Nasi Goreng",
-      ingredients:
-        "Nasi putih, Bawang putih, Ayam, Kecap manis atau kecap asin, Sambal, Daun bawang, Garam",
+      ingredients: "Nasi putih, Bawang putih, Ayam, Kecap manis atau kecap asin, Sambal, Daun bawang, Garam",
       instruction:
         "1. Panaskan minyak goreng di atas wajan.\n2. Tumis bawang putih hingga harum.\n3. Masukkan nasi putih dan aduk hingga merata.\n4. Tambahkan kecap manis atau kecap asin, saus sambal, garam\n5. Aduk hingga merata dan masak selama 5 menit.\n6. Tambahkan daun bawang dan aduk hingga merata.",
-      caption:
-        "Nikmati nasi goreng ala rumahan yang gurih dan enak dengan resep ini, dibuat dengan bahan-bahan sederhana seperti nasi, ayam, telur dan sayuran.",
+      caption: "Nikmati nasi goreng ala rumahan yang gurih dan enak dengan resep ini, dibuat dengan bahan-bahan sederhana seperti nasi, ayam, telur dan sayuran.",
       category: "Main Course",
+      img_filename: "file-1696515594948",
     },
     {
       id: uuidv4(),
