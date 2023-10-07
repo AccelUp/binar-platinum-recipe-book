@@ -6,7 +6,7 @@
 export default {
   development: {
     client: "postgresql",
-    connection: "postgresql://postgres:ace16@localhost:5432/recipe_platinum",
+    connection: "postgresql://root:root@localhost:5434/recipe-book",
   },
   migrations: {
     directory: "./src/db/migrations",
