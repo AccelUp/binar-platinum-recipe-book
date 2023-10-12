@@ -5,6 +5,7 @@
  */
 export default {
   development: {
+    // Change this based on your local connection
     client: "postgresql",
     connection: "postgresql://postgres:ace16@localhost:5432/recipe_platinum",
   },

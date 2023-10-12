@@ -16,5 +16,5 @@ app.use(bodyParser.json());
 app.use("/", router);
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`  ⚡ Server running on http://localhost:${PORT}`);
 });

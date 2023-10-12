@@ -1,0 +1,6 @@
+.Home {
+  display: flex;
+  flex-flow: column;
+  height: 120vh;
+  font-family: "Roboto", sans-serif;
+}

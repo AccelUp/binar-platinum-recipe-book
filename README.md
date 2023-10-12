@@ -38,6 +38,12 @@ Now that you have installed the necessary dependencies using Yarn, you can run t
    yarn dev
    ```
 
+   or
+
+   ```bash
+   npm run dev
+   ```
+
    This command will start the development server, and your app should be accessible at [http://localhost:5173/](http://localhost:5173/) in your web browser.
 
 2. Start the development client:
@@ -46,12 +52,24 @@ Now that you have installed the necessary dependencies using Yarn, you can run t
    yarn start
    ```
 
+   or
+
+   ```bash
+   npm run start
+   ```
+
    This command will start the development server, and your app should be accessible at [http://localhost:8000](http://localhost:8000) in your web browser.
 
 3. Start the development client and server using concurrently:
 
    ```bash
-   yarn start
+   yarn devStart
+   ```
+
+   or
+
+   ```bash
+   npm run devStart
    ```
 
    This command will start both development server, and client.
