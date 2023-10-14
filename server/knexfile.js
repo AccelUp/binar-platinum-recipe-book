@@ -7,9 +7,12 @@ export default {
   development: {
     client: "postgresql",
     connection: "postgresql://root:root@localhost:5434/recipe-book",
-  },
-  migrations: {
-    directory: "./src/db/migrations",
+    migrations: {
+      directory: "./src/db/migrations",
+    },
+    seeds: {
+      directory: "./src/db/seeds",
+    },
   },
 
   staging: {
