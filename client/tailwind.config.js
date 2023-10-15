@@ -5,7 +5,22 @@ export default {
   purge: ["./public/**/*.html", "./src/**/*.{js,jsx,ts,tsx,vue}"],
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    fontFamily: {
+      Poppins: ["Poppins", "sans-serif"],
+    },
+    extend: {
+      screens: {
+        mobile: "320px",
+        tablet: "639px",
+        laptop: "1023px",
+        desktop: "1279px",
+      },
+      colors: {
+        primary: "#E9B824",
+        blackk: "#080202",
+        whitee: "#FAFAFA",
+      },
+    },
   },
   plugins: [],
 };
