@@ -9,6 +9,8 @@
   "author": "AccelUp <risetyudhaadhi16@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "concurrently": "^8.2.1"
+    "concurrently": "^8.2.1",
+    "react-icons": "^4.11.0",
+    "react-router-dom": "^6.16.0"
   }
 }
