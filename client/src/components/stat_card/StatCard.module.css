@@ -1,5 +1,5 @@
-.Hero {
-    background: url(../../assets/Foodies.jpg);
+.StatCard {
+    background: url(../../assets/food.jpg);
     width: 100%;
     background-size: cover;
     background-position: center;
@@ -8,7 +8,7 @@
     color: #fff;
 }
 
-.Hero h1 {
+.StatCard h1 {
     font-size: 4rem;
     font-weight: 700;
     line-height: 1.2;
