@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "devStart": "concurrently \"cd client && yarn dev\" \"cd server && yarn start\" "
+    "client": "cd client && yarn dev",
+    "server": "cd server && yarn start",
+    "devStart": "concurrently -n \"CLIENT,SERVER\" -c \"red,blue\" -p \"[{name}]\" \"yarn client\" \"yarn server\""
   },
   "name": "binar-platinum-recipe-book",
   "version": "1.0.0",
