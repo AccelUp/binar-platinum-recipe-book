@@ -1,58 +1,74 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-const PopularRecipe = ({ initialProduct = [] }) => {
-  const [product, SetProduct] = useState([]);
+
+const PopularRecipe = () => {
+  const [recipes, setRecipes] = useState([]);
+
   useEffect(() => {
-    const fetchProduct = async () => {
-      const response = await fetch("https://fakestoreapi.com/products?limit=6");
-      const data = await response.json();
-      SetProduct(data);
+    const fetchRecipes = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/v1/recipebook/recipes?limit=6"
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setRecipes(data.data.recipe);
+        } else {
+          console.error("Failed to fetch recipe data.");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
     };
-    fetchProduct();
+
+    fetchRecipes();
   }, []);
 
-  return (
-    <>
-      <div className="text-blackk bg-primary font-Poppins">
-        <h2 className="text-center text-5xl pt-10 font-semibold">
-          Popular Recipe
-        </h2>
-        <div className="container px-5 py-20 mx-auto">
-          <div className="flex flex-wrap -mb-4 justify-center">
-            {product.map((product) => {
-              console.log(product, "product");
-              const { id, title, price, category, image } = product;
-              return (
-                <Link
-                  to={`/products/${id}`}
-                  className="lg:w-1/4 md:w-1/2 p-4 bg-whitee w-full mb-5 mx-5 cursor-pointer rounded-lg shadow-md border border-opacity-50"
-                  key={id}
-                >
-                  <a className="block relative h-48 rounded overflow-hidden">
-                    <img
-                      alt={title}
-                      className="shadow-lg object-contain  mx-auto w-full h-full block"
-                      src={image}
-                    />
-                  </a>
-                  <div className="mt-4">
-                    <h3 className="text-slate-500 text-xs tracking-widest uppercase title-font mb-1">
-                      {category}
-                    </h3>
-                    <a href={`/products/${id}`}>
-                      <h2 className="text-slate-900 title-font text-lg font-bold">
-                        {title}
-                      </h2>
-                    </a>
-                    <p className="mt-1">${price}</p>
-                  </div>
-                </Link>
-              );
-            })}
+  const renderRecipe = () => {
+    if (!Array.isArray(recipes) || recipes.length === 0) {
+      return <p>Loading recipes...</p>;
+    }
+
+    return recipes.slice(0, 8).map((recipe) => (
+      <div
+        key={recipe.id.toString()}
+        className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4"
+      >
+        <Link to={`/recipes/${recipe.id}`}>
+          <div className="flex flex-col bg-yellow-200 rounded-md">
+            <div className="block relative rounded-md overflow-hidden bg-white">
+              <img
+                alt={recipe.title}
+                className="object-cover w-full h-48"
+                src={recipe.img_filename}
+              />
+            </div>
+            <div className="mt-4 pb-3 pl-3">
+              <h3 className="text-slate-500 text-xs tracking-widest uppercase title-font mb-1">
+                {recipe.category}
+              </h3>
+              <a href={`/products/${recipe.id}`}>
+                <h2 className="text-slate-900 text-lg font-bold">
+                  {recipe.title}
+                </h2>
+              </a>
+            </div>
+            {/* <p className="mt-1">{recipe.caption}</p> */}
           </div>
-        </div>
+        </Link>
       </div>
-    </>
+    ));
+  };
+
+  return (
+    <div className="bg-primary text-black font-Poppins">
+      <h2 className="text-5xl font-semibold text-center pt-10 underline">
+        Popular Recipe
+      </h2>
+      <div className="container px-5 pt-5 pb-16 mx-auto">
+        <div className="flex flex-wrap -mb-4">{renderRecipe()}</div>
+      </div>
+    </div>
   );
 };
 
