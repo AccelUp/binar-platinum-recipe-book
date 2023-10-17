@@ -1,4 +1,6 @@
 // Update with your config settings.
+import dotenv from "dotenv";
+dotenv.config();
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
@@ -6,7 +8,7 @@
 export default {
   development: {
     client: "postgresql",
-    connection: "postgresql://root:root@localhost:5432/recipe-platinum",
+    connection: process.env.DATABASE_URL,
   },
   migrations: {
     directory: "./src/db/migrations",
