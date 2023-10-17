@@ -1,11 +1,5 @@
 import express from "express";
-import {
-  addRecipes,
-  deleteRecipesById,
-  editRecipesById,
-  getRecipes,
-  getRecipesById,
-} from "../controllers/recipe.controllers.js";
+import { addRecipes, deleteRecipesById, editRecipesById, getRecipes, getRecipesById } from "../controllers/recipe.controllers.js";
 
 const router = express.Router();
 const prefixPath = "api/v1/recipebook";
