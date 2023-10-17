@@ -3,17 +3,16 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import cors from "cors";
 import router from "./src/views/recipe.views.js";
+import dotenv from "dotenv";
+dotenv.config();
 
+console.log(process.env.DATABASE_URL);
 const app = express();
 app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 8000;
-
-// app.get("/", (req, res) => {
-//   res.send("Hello");
-// });
 
 app.use("/", router);
 
