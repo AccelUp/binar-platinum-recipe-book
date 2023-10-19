@@ -2,8 +2,8 @@ import db from "../config/db.js";
 import { v4 } from "uuid";
 
 class RecipeModels {
-  //Post
-  async insert(title, ingredients, instruction, caption, category) {
+  //Post addRecipes
+  async insert(title, ingredients, instruction, caption, category, imageFilename) {
     const newRecipe = {
       id: v4(),
       title,
@@ -11,24 +11,29 @@ class RecipeModels {
       instruction,
       caption,
       category,
+      img_filename: imageFilename,
     };
     return await db.insert(newRecipe).into("recipe").returning("*"); //.returning
   }
-  //Get
+
+  //Get getRecipes
   async findAll() {
     const query = await db.select("*").table("recipe");
     return query;
     // return this.recipesData;
   }
-  //Get
+
+  //Get getRecipesById
   async findById(id) {
     return await db.select("*").table("recipe").where({ id });
   }
-  //Delete
+
+  //Delete deleteRecipesById
   async delete(id) {
     return await db.del().table("recipe").where({ id });
   }
-  //Update
+
+  //Update editRecipesById
   async edit(id, body) {
     return await db.update(body).table("recipe").where({ id }).returning("*");
   }
