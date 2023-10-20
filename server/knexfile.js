@@ -11,9 +11,12 @@ export default {
   development: {
     client: "postgresql",
     connection: process.env.DATABASE_URL,
-  },
-  migrations: {
-    directory: "./src/db/migrations",
+    migrations: {
+      directory: "./src/db/migrations",
+    },
+    seeds: {
+      directory: "./src/db/seeds",
+    },
   },
 
   staging: {
