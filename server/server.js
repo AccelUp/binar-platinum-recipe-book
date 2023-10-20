@@ -2,7 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import cors from "cors";
-import router from "./src/views/recipe.views.js";
+import router from "./src/views/recipe.router.js";
 import dotenv from "dotenv";
 dotenv.config();
 
