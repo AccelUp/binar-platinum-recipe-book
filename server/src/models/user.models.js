@@ -1,9 +1,9 @@
 import db from "../config/db.js";
 import { v4 } from "uuid";
-import { ErrorServer, ErrorNotFound } from "../helpers/errorHandlers.js";
+import { ErrorServer } from "../helpers/errorHandlers.js";
 import bcrypt from "bcrypt";
 
-class user {
+class User {
   async createUser(username, password) {
     const genSalt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, genSalt);
@@ -26,7 +26,7 @@ class user {
     }
   }
 
-  async getAllUser() {
+  async getAllUsers() {
     try {
       return await db.select("*").from("users");
     } catch (e) {
@@ -37,7 +37,9 @@ class user {
   async updateUserPassword(userId, newPassword) {
     try {
       const hashedPassword = await bcrypt.hash(newPassword, 10);
-      return await db("users").where("id", userId).update({ hash_password: hashedPassword });
+      return await db("users")
+        .where("id", userId)
+        .update({ hash_password: hashedPassword });
     } catch (e) {
       throw new ErrorServer(e.detail);
     }
@@ -52,26 +54,4 @@ class user {
   }
 }
 
-export default user;
-
-// module.exports = {
-//   createUser,
-//   getUserByUsername,
-//   getAllUser,
-//   updateUserPassword,
-//   deleteUser,
-// };
-
-// class users {
-//   // register user
-//   async insert(username, hash_password) {
-//     const newUser = {
-//       id: v4(),
-//       username,
-//       password: hash_password,
-//     };
-//     return await db.insert(newUser).into("users").returning("*");
-//   }
-// }
-
-// export default users;
+export default User;
