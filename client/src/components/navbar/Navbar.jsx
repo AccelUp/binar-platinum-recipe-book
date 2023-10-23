@@ -4,7 +4,7 @@ import {
   AiOutlineMenu,
   AiOutlineClose,
 } from "react-icons/ai";
-import { MdOutlineKitchen } from "react-icons/md";
+import { FaBookJournalWhills } from "react-icons/fa6";
 
 const Navbar = () => {
   const [nav, setNav] = useState(true);
@@ -17,7 +17,7 @@ const Navbar = () => {
       <div className="text-primary  flex justify-between items-center h-20 max-w-[1240px] mx-auto  ">
         <a
           className="ml-3 text-2xl text-primary font-bold cursor-pointer uppercase"
-          href="/homepage"
+          href="/"
         >
           Creative Kitchen
         </a>
@@ -26,10 +26,10 @@ const Navbar = () => {
             <a href={`/`}>Home</a>
           </span>
           <span className="p-4 cursor-pointer text-primary font-bold hover:text-whitee ease-in-out duration-300">
-            <a href={`/browseproducts/`}>Browse Recipe</a>
+            <a href={`/browserecipe`}>Browse Recipe</a>
           </span>
           <span className="p-4 cursor-pointer text-primary font-bold hover:text-whitee ease-in-out duration-300">
-            <a href={`/login/`}>Login</a>
+            <a href={`/login`}>Login</a>
           </span>
         </nav>
         <div onClick={handleNav} className="block md:hidden">
@@ -51,17 +51,20 @@ const Navbar = () => {
                 : "fixed left-[-100%] "
             }
           >
-            <MdOutlineKitchen size={50} className="p-1 text-blackk mt-4 ml-4" />
+            <FaBookJournalWhills
+              size={50}
+              className="p-1 text-blackk mt-4 ml-4"
+            />
             <ul className="uppercase md:hidden bg-primary">
-              <li className="p-4 border-b border-ungu cursor-pointer text-black hover:text-slate-900 ease-in-out duration-300">
+              <li className="p-4 border-b border-blackk cursor-pointer text-black hover:text-slate-900 ease-in-out duration-300">
                 <a href={`/`}>Home</a>
               </li>
-              <li className="p-4 border-b border-ungu cursor-pointer text-black hover:text-slate-900 ease-in-out duration-300">
-                <a href={`/browseproducts/`}>Browse Products</a>
+              <li className="p-4 border-b border-blackk cursor-pointer text-black hover:text-slate-900 ease-in-out duration-300">
+                <a href={`/browserecipe`}>Browse Recipe</a>
               </li>
-              <button className="inline-flex items-center border-0 py-1 px-3 focus:outline-none hover:text-slate-700 hover:translate-x-2 duration-500 ease-in-out rounded text-base mt-4 md:mt-0">
-                <AiOutlineShoppingCart size={30} />
-              </button>
+              <li className="p-4 border-b border-blackk cursor-pointer text-black hover:text-slate-900 ease-in-out duration-300">
+                <a href={`/login`}>Login</a>
+              </li>
             </ul>
           </div>
         </div>
