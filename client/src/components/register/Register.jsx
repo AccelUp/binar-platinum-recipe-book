@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import clasess from "../login/Login.module.css";
 
 const Register = () => {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     username: "",
@@ -40,10 +40,9 @@ const Register = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // Form is valid, you can proceed with form submission
       try {
         const response = await fetch(
-          "http://localhost:8000/api/v1/recipebook/user/register", // Update the API endpoint to the registration endpoint
+          "http://localhost:8000/api/v1/recipebook/user/register",
           {
             method: "POST",
             headers: {
@@ -54,7 +53,7 @@ const Register = () => {
         );
 
         if (response.ok) {
-          navigate("/login"); // Redirect to the login page after successful registration
+          navigate("/login");
         } else {
           console.error("Failed to create user.");
         }
@@ -86,7 +85,7 @@ const Register = () => {
                     className={`bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 ${
                       errors.username ? "border-red-500" : ""
                     }`}
-                    placeholder="name@company.com"
+                    placeholder="username"
                     required=""
                   />
                   {errors.username && (
