@@ -3,7 +3,7 @@ import responseError from "../helpers/restResponse.helper.js";
 
 const JWT_KEY = process.env.JWT_SECRET;
 
-const verifyToken = (req, res, next) => {
+const middleware = (req, res, next) => {
   const token = req.headers.authorization;
   const access_token = token.split(" ")[1];
 
@@ -20,4 +20,4 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-export default verifyToken;
+export default { middleware };
