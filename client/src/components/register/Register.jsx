@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import clasess from "../login/Login.module.css";
+import clasess from "./Register.module.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ const Register = () => {
 
   return (
     <>
-      <div className={`${clasess.Login} relative pt-20`}>
+      <div className={`${clasess.Register} relative pt-20`}>
         <div className="flex flex-col items-center justify-center px-6 py-10 mx-auto md:h-screen lg:py-0">
           <div className="w-full bg-black rounded-md shadow md:mt-0 sm:max-w-md xl:p-0">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

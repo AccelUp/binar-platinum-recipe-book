@@ -1,0 +1,16 @@
+.Register {
+    background: url(https://images.unsplash.com/reserve/EnF7DhHROS8OMEp2pCkx_Dufer%20food%20overhead%20hig%20res.jpg?auto=format&fit=crop&q=80&w=2078&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-color: #000000bd;
+    background-blend-mode: hue;
+    color: #fff;
+}
+
+.Register h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+
+}
