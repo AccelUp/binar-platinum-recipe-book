@@ -1,23 +1,23 @@
-import usersmodel from "../models/user.models.js";
-import usersProfile from "../models/userProfile.models.js";
-import { responseOk, responseError } from "../helpers/restResponse.helper.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { parse, serialize } from "cookie";
-import cookieParser from "cookie-parser";
-import { clearRefreshTokenCookie } from "../helpers/cookieHelper.js";
+import { responseOk, responseError } from "../helpers/restResponse.helper.js";
+import UsersModel from "../models/user.models.js";
+import UserProfileModel from "../models/userProfile.models.js";
 
-const users = new usersmodel();
-const userProfile = new usersProfile();
+const JWT_ACCESS_SECRET = process.env.JWT_SECRET;
+const JWT_REFRESH_SECRET = process.env.JWT_SECRET;
 
-const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_KEY;
-const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_KEY;
+const users = new UsersModel();
+const userProfile = new UserProfileModel();
+
+let access_token;
+let refresh_token;
 
 async function registerUser(req, res) {
   const { id, username, password, fullName, email, dateOfBirth, address } =
     req.body;
+
   try {
-    //Destructuring user_id to get first element of createUser, which is ID
     const [user_id] = await users.createUser(username, password);
     const userId = user_id.id;
     await userProfile.createUserProfile(
@@ -28,8 +28,9 @@ async function registerUser(req, res) {
       dateOfBirth,
       address
     );
+
     return res.status(201).json(
-      responseOk("User Registered Sucessfully", {
+      responseOk("User Registered Successfully", {
         username,
         fullName,
         email,
@@ -56,11 +57,12 @@ async function getUsers(req, res) {
 async function updatePassword(req, res) {
   const id = req.params.id;
   const newPassword = req.body.password;
+
   try {
     await users.updateUserPassword(id, newPassword);
     return res
       .status(200)
-      .json(responseOk("User Password Updated Sucessfully"));
+      .json(responseOk("User Password Updated Successfully"));
   } catch (e) {
     console.error("Error updating user password: ", e);
     return res.status(e.code || 500).json(responseError(e.message));
@@ -76,37 +78,28 @@ function generateAccessToken(user) {
     }
   );
 
-  return { accessToken };
+  return accessToken;
 }
 
 function generateRefreshToken(user) {
-  const refreshToken = jwt.sign(
+  const refresh_token = jwt.sign(
     { user: { user_id: user.id } },
     JWT_REFRESH_SECRET,
     {
       expiresIn: "7d",
     }
   );
-  return refreshToken;
+  return refresh_token;
 }
 
-function setRefreshTokenCookie(res, refreshToken) {
-  const cookieValue = serialize("refreshToken", refreshToken, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
-  });
-  res.setHeader("Set-Cookie", cookieValue);
-}
-
-function getRefreshTokenFromCookie(req) {
-  const cookies = parse(req.headers.cookie || "");
-  return cookies.refreshToken;
+function setTokens(access_token, refresh_token) {
+  access_token = access_token;
+  refresh_token = refresh_token;
 }
 
 function authenticateAccessToken(req, res, next) {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
+  const auth_header = req.headers["authorization"];
+  const token = auth_header && auth_header.split(" ")[1];
   if (!token) return res.sendStatus(401);
 
   jwt.verify(token, JWT_ACCESS_SECRET, (err, user) => {
@@ -117,17 +110,64 @@ function authenticateAccessToken(req, res, next) {
 }
 
 function authenticateRefreshToken(req, res, next) {
-  const refreshToken = getRefreshTokenFromCookie(req);
-  if (!refreshToken) return res.sendStatus(401);
+  const refresh_token = getRefreshTokenFromCookie(req);
+  if (!refresh_token) return res.sendStatus(401);
 
-  jwt.verify(refreshToken, JWT_REFRESH_SECRET, (err, user) => {
+  jwt.verify(refresh_token, JWT_REFRESH_SECRET, (err, user) => {
     if (err) return res.sendStatus(403);
     req.user = user;
     next();
   });
 }
 
-async function isLogin(req, res) {
+async function refreshAccessToken(req, res) {
+  const refresh_token = req.body.refresh_token;
+  const username = req.body.username;
+
+  try {
+    jwt.verify(refresh_token, JWT_REFRESH_SECRET, async (err, data) => {
+      if (err) {
+        return res.status(403).json(responseError("Invalid Refresh Token"));
+      }
+
+      try {
+        const user = await users.getUserByUsername(username);
+        if (!user) {
+          return res.status(404).json(responseError("User not found"));
+        }
+        const access_token = generateAccessToken(user);
+
+        return res
+          .status(200)
+          .json(responseOk("Access Token Refreshed", { access_token }));
+      } catch (e) {
+        console.error("Error fetching user details: ", e);
+        return res.status(e.code || 500).json(responseError(e.message));
+      }
+    });
+  } catch (e) {
+    console.error("Error refreshing access token: ", e);
+    return res.status(e.code || 500).json(responseError(e.message));
+  }
+}
+
+async function getByID(req, res) {
+  const id = req.params.id;
+  try {
+    const user = await users.getUserById(id);
+    if (!user) {
+      return res.status(404).json(responseError(e.message));
+    }
+    return res
+      .status(200)
+      .json(responseOk("Contact retrieved successfully", user));
+  } catch (e) {
+    console.error("Error retrieving contacts: ", e);
+    return res.status(500).json(responseError(e.message));
+  }
+}
+
+async function loginAndStoreTokens(req, res) {
   const { username, password } = req.body;
 
   try {
@@ -137,24 +177,25 @@ async function isLogin(req, res) {
       (await bcrypt.compare(password, userByUsername.hash_password))
     ) {
       const access_token = generateAccessToken(userByUsername);
-
-      const refreshToken = generateRefreshToken(userByUsername);
-      setRefreshTokenCookie(res, refreshToken);
+      const refresh_token = generateRefreshToken(userByUsername);
+      setTokens(access_token, refresh_token);
 
       return res
         .status(201)
-        .json(responseOk("Login Successfully", { access_token, refreshToken }));
+        .json(
+          responseOk("Login Successfully", { access_token, refresh_token })
+        );
     } else {
       res.status(403).json(responseError("Invalid Credentials"));
     }
   } catch (e) {
-    console.error("Error registering user: ", e);
+    console.error("Error logging in: ", e);
     return res.status(e.code || 500).json(responseError(e.message));
   }
 }
 
-async function isLogout(req, res) {
-  clearRefreshTokenCookie(res);
+async function logoutAndRemoveTokens(req, res) {
+  setTokens(null, null);
   res.status(200).json(responseOk("Logged out successfully"));
 }
 
@@ -165,7 +206,7 @@ async function deleteUsers(req, res) {
     await userProfile.deleteUserProfile(id);
     return res
       .status(200)
-      .json(responseOk("User & UserProfile Deleted Successfuly"));
+      .json(responseOk("User & UserProfile Deleted Successfully"));
   } catch (e) {
     console.error("Error Deleting User and Profile: ", e);
     return res.status(e.code || 500).json(responseError(e.message));
@@ -174,13 +215,13 @@ async function deleteUsers(req, res) {
 
 export {
   registerUser,
-  isLogin,
-  isLogout,
+  loginAndStoreTokens,
+  logoutAndRemoveTokens,
   getUsers,
+  getByID,
   updatePassword,
   deleteUsers,
-  setRefreshTokenCookie,
-  getRefreshTokenFromCookie,
   authenticateAccessToken,
   authenticateRefreshToken,
+  refreshAccessToken,
 };
