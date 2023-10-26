@@ -40,7 +40,7 @@ const PopularRecipe = () => {
               <img
                 alt={recipe.title}
                 className="object-cover w-full h-48"
-                src={recipe.img_filename}
+                src={"http://localhost:8000/media/" + recipe.img_filename}
               />
             </div>
             <div className="mt-4 pb-3 pl-3">
