@@ -45,6 +45,3 @@ async function deleteUserProfile(req, res) {
 }
 
 export { getUserProfile, updateUserProfile, deleteUserProfile };
-
-// import { updateUserProfile, deleteUserProfile } from "../models/userProfile.models.js";
-// import { responseOk, responseError } from "../helpers/restResponse.helper.js";
