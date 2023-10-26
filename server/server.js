@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import router from "./src/views/router.js";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use("/media", express.static("media"));
 app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 const PORT = process.env.PORT || 8000;
 

@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { responseError, responseOk } from "../helpers/restResponse.helper.js";
+import responseError from "../helpers/restResponse.helper.js";
 
 const JWT_KEY = process.env.JWT_SECRET;
 
@@ -13,7 +13,6 @@ const middleware = (req, res, next) => {
 
   jwt.verify(access_token, JWT_KEY, (err, decoded) => {
     if (err) {
-      console.log(err);
       return res.status(401).json(responseError("Invalid Access Token"));
     }
     req.userId = decoded.userId;
@@ -21,4 +20,4 @@ const middleware = (req, res, next) => {
   });
 };
 
-export default middleware;
+export default { middleware };

@@ -5,22 +5,14 @@ import bcrypt from "bcrypt";
 
 class User {
   async createUser(username, password) {
-    const gen_salt = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(password, gen_salt);
+    const genSalt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(password, genSalt);
     try {
       return await db("users").returning("id").insert({
         id: v4(),
         username,
         hash_password: hashPassword,
       });
-    } catch (e) {
-      throw new ErrorServer(e.detail);
-    }
-  }
-
-  async getUserById(id) {
-    try {
-      return await db("users").where("id", id).first();
     } catch (e) {
       throw new ErrorServer(e.detail);
     }

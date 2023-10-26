@@ -49,10 +49,6 @@ const Login = () => {
 
         if (response.ok) {
           navigate("/dashboard");
-          const resp = await response.json();
-          console.log({ resp });
-          localStorage.setItem("access_token", resp.data.access_token);
-          localStorage.setItem("refresh_token", resp.data.refresh_token);
         } else {
           setNotification(
             "Failed to login. Please check your username and password."
