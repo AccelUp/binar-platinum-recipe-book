@@ -5,15 +5,21 @@ import cors from "cors";
 import router from "./src/views/router.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import swaggerUi from "swagger-ui-express";
+import specs from "./swagger-output.json" assert { type: "json" };
+
+// import * as jsonData from './swagger-output.json' assert { type: 'json' };
 
 dotenv.config();
-
 console.log(process.env.DATABASE_URL);
+
 const app = express();
+
 app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 const PORT = process.env.PORT || 8000;
 

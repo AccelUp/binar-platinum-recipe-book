@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
     "dev": "nodemon server.js",
+    "gen:swagger": "node ./bin/swagger-gen",
     "migrate:latest": "knex migrate:latest",
     "migrate:rollback": "knex migrate:rollback",
     "seed:run": "knex seed:run"
@@ -24,6 +26,8 @@
     "knex": "^2.5.1",
     "multer": "^1.4.5-lts.1",
     "pg": "^8.11.3",
+    "swagger-autogen": "^2.23.6",
+    "swagger-ui-express": "^5.0.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

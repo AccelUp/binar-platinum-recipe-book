@@ -11,9 +11,7 @@ async function getUserProfile(req, res) {
   try {
     const userProfilesss = await userProfile.getUserProfileByUserId(userId);
     if (userProfilesss) {
-      return res
-        .status(200)
-        .json(responseOk("Success Get User Profile", userProfilesss));
+      return res.status(200).json(responseOk("Success Get User Profile", userProfilesss));
     }
   } catch (e) {
     console.error("Error fetching user profile: ", e);

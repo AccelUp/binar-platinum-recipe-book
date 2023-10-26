@@ -4,7 +4,6 @@ import { ErrorServer } from "../helpers/errorHandlers.js";
 
 class userProfile {
   // register user
-
   async getUserProfileByUserId(userId) {
     try {
       return await db("user_profile").where("user_id", userId).first();

@@ -1,6 +1,6 @@
 import express from "express";
 import { getUserProfile, updateUserProfile, deleteUserProfile } from "../controllers/userProfile.controller.js";
-// import middleware from "../middlewares/middleware.js";
+// import authMiddleware from "../middlewares/middleware.js";
 
 const router = express.Router();
 const prefixPath = "api/v1/user-profile";
