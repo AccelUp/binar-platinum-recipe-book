@@ -10,6 +10,7 @@ dotenv.config();
 
 console.log(process.env.DATABASE_URL);
 const app = express();
+app.use("/media", express.static("media"));
 app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
