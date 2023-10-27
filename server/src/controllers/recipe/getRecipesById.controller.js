@@ -1,5 +1,8 @@
-import { responseOk, responseError } from "../helpers/restResponse.helper.js";
-import CookBookModels from "../models/recipe.models.js";
+import {
+  responseOk,
+  responseError,
+} from "../../helpers/restResponse.helper.js";
+import CookBookModels from "../../models/recipe.models.js";
 
 const models = new CookBookModels();
 
@@ -14,7 +17,9 @@ async function getRecipesById(req, res) {
 
     return res.status(200).json(responseOk("Success get link by id", data));
   } catch (error) {
-    return res.status(500).json(responseError("Error while fetching recipe by id", error.message));
+    return res
+      .status(500)
+      .json(responseError("Error while fetching recipe by id", error.message));
   }
 }
 
