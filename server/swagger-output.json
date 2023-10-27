@@ -11,13 +11,56 @@
     }
   ],
   "paths": {
-    "/api/v1/recipebook/recipes": {
-      "get": {
+    "/api/v1/auth/login": {
+      "post": {
         "description": "",
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
+            "name": "login",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "logout",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string"
@@ -31,12 +74,92 @@
         }
       }
     },
+    "/api/v1/auth/refresh-token": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "refresh token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refresh_token": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/protected": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "protect",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/recipebook/recipes": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "get all recipe",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/api/v1/recipebook/recipes/{id}": {
       "get": {
         "description": "",
         "parameters": [
           {
-            "name": "id",
+            "name": "get recipe by ID",
             "in": "path",
             "required": true,
             "schema": {
@@ -53,8 +176,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "default": {
+            "description": ""
           }
         }
       }
@@ -64,7 +187,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "Add",
+            "name": "add recipe",
             "in": "path",
             "required": true,
             "schema": {
@@ -84,7 +207,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "Edit by ID",
+            "name": "edit recipe by ID",
             "in": "path",
             "required": true,
             "schema": {
@@ -107,12 +230,12 @@
         }
       }
     },
-    "/${prefixPath}/delete/{id}": {
+    "/api/v1/recipebook/delete/{id}": {
       "delete": {
         "description": "",
         "parameters": [
           {
-            "name": "prefixPath",
+            "name": "delete recipe By ID",
             "in": "path",
             "required": true,
             "schema": {
@@ -135,12 +258,12 @@
         }
       }
     },
-    "/api/v1/recipebook/user/register": {
+    "/api/v1/users/register": {
       "post": {
         "description": "",
         "parameters": [
           {
-            "name": "Register User",
+            "name": "registe user",
             "in": "path",
             "required": true,
             "schema": {
@@ -190,12 +313,12 @@
         }
       }
     },
-    "/api/v1/recipebook/user/users": {
+    "/api/v1/users/profile": {
       "get": {
         "description": "",
         "parameters": [
           {
-            "name": "Get All User",
+            "name": "get user profile",
             "in": "path",
             "required": true,
             "schema": {
@@ -207,18 +330,21 @@
           "200": {
             "description": "OK"
           },
+          "404": {
+            "description": "Not Found"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       }
     },
-    "/api/v1/recipebook/user/{id}": {
+    "/api/v1/users/password/{id}": {
       "put": {
         "description": "",
         "parameters": [
           {
-            "name": "Get User By ID",
+            "name": "update password by ID",
             "in": "path",
             "required": true,
             "schema": {
@@ -256,12 +382,14 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/v1/users/{id}": {
       "delete": {
         "description": "",
         "parameters": [
           {
-            "name": "Delete User By ID",
+            "name": "delete user by ID",
             "in": "path",
             "required": true,
             "schema": {
@@ -283,79 +411,6 @@
           },
           "500": {
             "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/v1/recipebook/user/login": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "User Login",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "username": {
-                    "example": "any"
-                  },
-                  "password": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/recipebook/user/logout": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "User LogOut",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/ping": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
           }
         }
       }
@@ -365,7 +420,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "Get User Profile",
+            "name": "get user profile by ID",
             "in": "path",
             "required": true,
             "schema": {
@@ -394,7 +449,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "Update User Profile",
+            "name": "update user profile by ID",
             "in": "path",
             "required": true,
             "schema": {
@@ -443,7 +498,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "Delete User Profile",
+            "name": "dekete user profile by ID",
             "in": "path",
             "required": true,
             "schema": {
