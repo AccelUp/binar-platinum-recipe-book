@@ -11,9 +11,7 @@ async function getUserProfile(req, res) {
   try {
     const userProfilesss = await userProfile.getUserProfileByUserId(userId);
     if (userProfilesss) {
-      return res
-        .status(200)
-        .json(responseOk("Success Get User Profile", userProfilesss));
+      return res.status(200).json(responseOk("Success Get User Profile", userProfilesss));
     }
   } catch (e) {
     console.error("Error fetching user profile: ", e);
@@ -47,6 +45,3 @@ async function deleteUserProfile(req, res) {
 }
 
 export { getUserProfile, updateUserProfile, deleteUserProfile };
-
-// import { updateUserProfile, deleteUserProfile } from "../models/userProfile.models.js";
-// import { responseOk, responseError } from "../helpers/restResponse.helper.js";
