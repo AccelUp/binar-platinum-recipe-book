@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "nodemon server.js",
     "migrate:latest": "knex migrate:latest",
     "migrate:rollback": "knex migrate:rollback",
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "body-parser": "^1.20.2",
+    "jest": "^29.7.0",
     "morgan": "^1.10.0",
     "nodemon": "^3.0.1"
   }

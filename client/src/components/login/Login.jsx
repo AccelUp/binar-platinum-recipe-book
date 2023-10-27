@@ -37,7 +37,7 @@ const Login = () => {
     if (Object.keys(newErrors).length === 0) {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/v1/recipebook/user/login",
+          "http://localhost:8000/api/v1/auth/login",
           {
             method: "POST",
             headers: {

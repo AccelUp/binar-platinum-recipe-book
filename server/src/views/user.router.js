@@ -1,28 +1,21 @@
 import express from "express";
-import middleware from "../middlewares/middleware.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 import {
   registerUser,
-  loginAndStoreTokens,
-  logoutAndRemoveTokens,
   getUsers,
   getByID,
   updatePassword,
   deleteUsers,
-  refreshAccessToken,
 } from "../controllers/user.controller.js";
 
 const router = express.Router();
 
-const prefixPath = "/api/v1/recipebook/user";
+const userPrefix = "/api/v1/users";
 
-router.post(`${prefixPath}/register`, registerUser);
-router.post(`${prefixPath}/login`, loginAndStoreTokens);
-router.post(`${prefixPath}/logout`, logoutAndRemoveTokens);
-router.post(`${prefixPath}/refresh-token`, refreshAccessToken);
-router.get(`${prefixPath}/profile`, middleware, getByID);
-router.get(`${prefixPath}/users`, getUsers);
-router.put(`${prefixPath}/:id`, updatePassword);
-router.delete(`${prefixPath}/:id`, deleteUsers);
-router.delete(`${prefixPath}/users/:id`, deleteUsers);
+router.post(`${userPrefix}/register`, registerUser);
+router.get(`${userPrefix}`, getUsers);
+router.get(`${userPrefix}/profile`, getByID);
+router.put(`${userPrefix}/password/:id`, authMiddleware, updatePassword);
+router.delete(`${userPrefix}/:id`, authMiddleware, deleteUsers);
 
 export default router;
