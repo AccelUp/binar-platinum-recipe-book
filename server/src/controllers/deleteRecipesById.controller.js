@@ -13,7 +13,9 @@ async function deleteRecipesById(req, res) {
 
     return res.status(200).json(responseOk(`Success delete ${id}`, data));
   } catch (error) {
-    return res.status(500).json(responseError("something went wrong", error.message));
+    return res
+      .status(500)
+      .json(responseError("something went wrong", error.message));
   }
 }
 
