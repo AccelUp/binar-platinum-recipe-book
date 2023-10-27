@@ -14,7 +14,9 @@ async function getRecipesById(req, res) {
 
     return res.status(200).json(responseOk("Success get link by id", data));
   } catch (error) {
-    return res.status(500).json(responseError("Error while fetching recipe by id", error.message));
+    return res
+      .status(500)
+      .json(responseError("Error while fetching recipe by id", error.message));
   }
 }
 

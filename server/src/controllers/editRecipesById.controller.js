@@ -8,8 +8,16 @@ async function editRecipesById(req, res) {
     const id = req.params["id"];
     const body = req.body;
     if (!id) return res.status(400).json(responseError("ID is required"));
-    if (!body.title && !body.ingredients && !body.instruction && !body.caption && !body.category) {
-      return res.status(400).json(responseError("At least one field is required to update"));
+    if (
+      !body.title &&
+      !body.ingredients &&
+      !body.instruction &&
+      !body.caption &&
+      !body.category
+    ) {
+      return res
+        .status(400)
+        .json(responseError("At least one field is required to update"));
     }
 
     const data = await models.edit(id, body);
@@ -17,7 +25,9 @@ async function editRecipesById(req, res) {
 
     return res.status(200).json(responseOk(`Success update ${id}`, data));
   } catch (error) {
-    return res.status(500).json(responseError("Error while updating recipe", error.message));
+    return res
+      .status(500)
+      .json(responseError("Error while updating recipe", error.message));
   }
 }
 
