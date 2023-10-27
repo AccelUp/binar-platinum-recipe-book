@@ -7,6 +7,7 @@ import authRouter from "./auth.router.js";
 
 const router = express.Router();
 
+// router.use(authMiddleware);
 router.use(recipeRouter);
 router.use(userProfileRouter);
 router.use(userRouter);

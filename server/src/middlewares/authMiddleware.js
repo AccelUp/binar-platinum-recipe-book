@@ -16,7 +16,7 @@ const authMiddleware = (req, res, next) => {
       console.log(err);
       return res.status(401).json(responseError("Invalid Access Token"));
     }
-    req.userId = decoded.userId;
+    req.local_user = decoded.userId;
     next();
   });
 };

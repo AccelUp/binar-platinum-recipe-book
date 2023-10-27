@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 const prefixPath = "api/v1/recipebook";
-
+// #swagger.tags = ['Recipe']
 router.get(`/${prefixPath}/recipes`, getRecipes);
 router.get(`/${prefixPath}/recipes/:id`, getRecipesById);
 router.post(`/${prefixPath}/add`, addRecipes);

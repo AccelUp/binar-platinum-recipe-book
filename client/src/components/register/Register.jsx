@@ -42,7 +42,7 @@ const Register = () => {
     if (Object.keys(newErrors).length === 0) {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/v1/recipebook/user/register",
+          "http://localhost:8000/api/v1/users/register",
           {
             method: "POST",
             headers: {

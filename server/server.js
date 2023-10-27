@@ -4,15 +4,21 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import router from "./src/views/router.js";
 import dotenv from "dotenv";
+import swaggerUi from "swagger-ui-express";
+import specs from "./swagger-output.json" assert { type: "json" };
+
+// import * as jsonData from './swagger-output.json' assert { type: 'json' };
 
 dotenv.config();
-
 console.log(process.env.DATABASE_URL);
+
 const app = express();
 app.use("/media", express.static("media"));
 app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
+
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 const PORT = process.env.PORT || 8000;
 
