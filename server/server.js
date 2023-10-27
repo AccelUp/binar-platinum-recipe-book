@@ -4,7 +4,6 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import router from "./src/views/router.js";
 import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
 import swaggerUi from "swagger-ui-express";
 import specs from "./swagger-output.json" assert { type: "json" };
 
@@ -18,7 +17,7 @@ app.use("/media", express.static("media"));
 app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
-app.use(cookieParser());
+
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 const PORT = process.env.PORT || 8000;
