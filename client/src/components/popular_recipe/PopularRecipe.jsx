@@ -47,7 +47,7 @@ const PopularRecipe = () => {
               <h3 className="text-slate-500 text-xs tracking-widest uppercase title-font mb-1">
                 {recipe.category}
               </h3>
-              <a href={`/products/${recipe.id}`}>
+              <a href={`/recipes/${recipe.id}`}>
                 <h2 className="text-slate-900 text-lg font-bold">
                   {recipe.title}
                 </h2>
