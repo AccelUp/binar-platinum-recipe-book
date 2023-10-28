@@ -10,111 +10,100 @@ export const seed = async function (knex) {
   await knex("recipe").insert([
     {
       id: uuidv4(),
-      title: "Nasi Goreng",
+      title: "Fried Rice",
       ingredients:
-        "Nasi putih, Bawang putih, Ayam, Kecap manis atau kecap asin, Sambal, Daun bawang, Garam",
+        "White rice, Garlic, Chicken, Sweet soy sauce or soy sauce, Sambal, Scallions, Salt",
       instruction:
-        "1. Panaskan minyak goreng di atas wajan.\n2. Tumis bawang putih hingga harum.\n3. Masukkan nasi putih dan aduk hingga merata.\n4. Tambahkan kecap manis atau kecap asin, saus sambal, garam\n5. Aduk hingga merata dan masak selama 5 menit.\n6. Tambahkan daun bawang dan aduk hingga merata.",
+        "1. Heat cooking oil on a wok.\n2. Sauté garlic until fragrant.\n3. Add white rice and stir until evenly distributed.\n4. Add sweet or salty soy sauce, chili sauce, salt\n5. Stir until evenly distributed and cook for 5 minutes.\n6. Add green onion and stir until evenly distributed.",
       caption:
-        "Nikmati nasi goreng ala rumahan yang gurih dan enak dengan resep ini, dibuat dengan bahan-bahan sederhana seperti nasi, ayam, telur dan sayuran.",
+        "Enjoy savory and delicious home-style fried rice with this recipe, made with simple ingredients such as rice, chicken, eggs and vegetables.",
       category: "Main Course",
-      img_filename: "file-1697690636172.jpg",
+      img_filename: "fried-rice.jpg",
     },
     {
       id: uuidv4(),
       title: "Pizza",
-      ingredients: "Tepung terigu, Air, Gula, Garam, Yeast, Minyak zaitun",
+      ingredients: "Flour, Water, Sugar, Salt, Yeast, Olive oil",
       instruction:
-        "1. Campurkan tepung terigu, air, gula, garam, yeast dan minyak zaitun hingga tercampur merata. \n2. Aduk-aduk sambil tuang air es sedikit demi sedikit. \n3. Uleni adonan hingga kalis dan elastis. \n4. Diamkan adonan selama 30 menit hingga mengembang. \n5. Setelah mengembang, pipihkan adonan dengan rolling pin. \n6. Letakkan adonan di atas loyang pizza yang sudah diolesi minyak zaitun. \n7. Tambahkan saus tomat dan topping sesuai selera. \n8. Panggang di oven selama 10-15 menit.",
-      caption: "Buat pizza sendiri di rumah dengan resep mudah.",
+        "1. Combine flour, water, sugar, salt, yeast and olive oil until evenly mixed. \n2. Stir while pouring ice water little by little. \n3. Knead the dough until smooth and elastic. \n4. Let the dough rest for 30 minutes to rise. \n5. After rising, flatten the dough with a rolling pin. \n6. Place the dough on a pizza pan that has been greased with olive oil. \n7. Add tomato sauce and toppings to taste. \n8. Bake in the oven for 10-15 minutes.",
+      caption: "Make your own pizza at home with easy recipes.",
       category: "Main Course",
-      img_filename: "file-1697690636172.jpg",
+      img_filename: "pizza.jpg",
     },
     {
       id: uuidv4(),
-      title: "Rendang Daging",
-      ingredients: "Tepung terigu, Air, Gula, Garam, Yeast, Minyak zaitun",
+      title: "Rendang Meat",
+      ingredients:
+        "Beef (500-700g), Coconut milk (1 can), Lemongrass, Ginger, Tamarind paste, Brown sugar, Salt, Oil.",
       instruction:
-        "1. Campurkan tepung terigu, air, gula, garam, yeast dan minyak zaitun hingga tercampur merata. \n2. Aduk-aduk sambil tuang air es sedikit demi sedikit. \n3. Uleni adonan hingga kalis dan elastis. \n4. Diamkan adonan selama 30 menit hingga mengembang. \n5. Setelah mengembang, pipihkan adonan dengan rolling pin. \n6. Letakkan adonan di atas loyang pizza yang sudah diolesi minyak zaitun. \n7. Tambahkan saus tomat dan topping sesuai selera. \n8. Panggang di oven selama 10-15 menit.",
-      caption: "Buat pizza sendiri di rumah dengan resep mudah.",
+        "1. Cut the beef into small pieces. \n2. Combine the rendang spices, such as lemongrass, ginger, lime leaves, and turmeric leaves. \n3. Sauté the rendang seasoning until fragrant. \n4. Add the beef pieces and stir until it changes color. \n5. Add coconut milk and water, then cook over low heat for a few hours until the meat is tender and the spices are absorbed. \n6. Add brown sugar and salt to taste.",
+      caption: "enjoy rendang with the most delicious recipe in the world",
       category: "Main Course",
-      img_filename: "file-1697690636172.jpg",
+      img_filename: "rendang.jpg",
     },
     {
       id: uuidv4(),
-      title: "Ayam Goreng",
-      ingredients: "Ayam, Tepung terigu, Garam, Merica, Minyak goreng",
+      title: "Fried Chicken",
+      ingredients: "Chicken, Wheat flour, Salt, Pepper, Cooking oil",
       instruction:
-        "1. Potong ayam menjadi bagian-bagian kecil. \n2. Campurkan tepung terigu, garam, dan merica. \n3. Balurkan potongan ayam dengan campuran tepung. \n4. Panaskan minyak goreng dalam wajan. \n5. Goreng ayam hingga kecokelatan dan matang. \n6. Sajikan dengan nasi atau saus favorit Anda.",
-      caption: "Nikmati ayam goreng lezat di rumah.",
+        "1. Cut the chicken into small pieces. \n2. Combine flour, salt, and pepper. \n3. Coat the chicken pieces with the flour mixture. \n4. Heat cooking oil in a wok. \n5. Fry the chicken until browned and cooked. \n6. Serve with rice or your favorite sauce.",
+      caption: "Enjoy delicious fried chicken at home.",
       category: "Main Course",
-      img_filename: "file-1697690636172.jpg",
+      img_filename: "fried-chicken.jpg",
     },
     {
       id: uuidv4(),
       title: "Pasta Carbonara",
-      ingredients:
-        "Pasta, Telur, Keju parmesan, Bacon, Minyak zaitun, Bawang putih",
+      ingredients: "Pasta, Eggs, Parmesan cheese, Bacon, Olive oil, Garlic",
       instruction:
-        "1. Rebus pasta hingga al dente. \n2. Sementara itu, tumis bawang putih dan bacon dengan minyak zaitun. \n3. Campur telur dan keju parmesan. \n4. Tiriskan pasta dan campurkan dengan campuran telur. \n5. Sajikan segera.",
-      caption: "Nikmati hidangan pasta lezat ini di rumah.",
+        "1. Boil the pasta until al dente. \n2. Meanwhile, sauté garlic and bacon in olive oil. \n3. Mix in eggs and parmesan cheese. \n4. Drain the pasta and mix it with the egg mixture. \n5. Serve immediately.",
+      caption: "Enjoy this delicious pasta dish at home.",
       category: "Main Course",
-      img_filename: "file-1697690636172.jpg",
+      img_filename: "carbonara-pasta.jpg",
     },
     {
       id: uuidv4(),
-      title: "Sop Tomat",
+      title: "Tomato Soup",
       ingredients:
-        "Tomat, Bawang, Kaldu ayam, Gula, Garam, Merica, Minyak zaitun",
+        "Tomatoes, Onions, Chicken broth, Sugar, Salt, Pepper, Olive oil",
       instruction:
-        "1. Tumis bawang hingga harum. \n2. Tambahkan tomat, kaldu ayam, gula, garam, dan merica. \n3. Masak hingga tomat lunak. \n4. Blender campuran ini hingga halus. \n5. Panaskan lagi sebelum disajikan.",
-      caption: "Nikmati sup tomat segar di rumah.",
+        "1. Sauté onion until fragrant. \n2. Add tomatoes, chicken stock, sugar, salt, and pepper. \n3. Cook until the tomatoes are soft. \n4. Blend this mixture until smooth. \n5. Heat again before serving.",
+      caption: "Enjoy fresh tomato soup at home.",
       category: "Soup",
-      img_filename: "file-1697690636172.jpg",
-    },
-    {
-      id: uuidv4(),
-      title: "Nasi Goreng",
-      ingredients:
-        "Nasi, Ayam, Telur, Bawang merah, Bawang putih, Kecap manis, Minyak goreng",
-      instruction:
-        "1. Tumis bawang merah dan bawang putih hingga harum. \n2. Tambahkan ayam dan telur. \n3. Masak hingga ayam matang dan telur tercampur. \n4. Tambahkan nasi dan kecap manis. \n5. Aduk rata dan masak hingga nasi panas. \n6. Sajikan dengan irisan mentimun dan kerupuk.",
-      caption: "Nikmati nasi goreng lezat di rumah.",
-      category: "Main Course",
-      img_filename: "file-1697690636172.jpg",
+      img_filename: "tomato-soup.jpg",
     },
     {
       id: uuidv4(),
       title: "Salad Caesar",
       ingredients:
-        "Daun romaine, Crouton, Keju parmesan, Dressing Caesar, Ayam panggang",
+        "Romaine leaves, Croutons, Parmesan cheese, Caesar dressing, Grilled chicken",
       instruction:
-        "1. Potong daun romaine dan ayam panggang menjadi potongan kecil. \n2. Tambahkan crouton dan keju parmesan. \n3. Siram dengan dressing Caesar. \n4. Aduk rata dan sajikan.",
-      caption: "Nikmati salad Caesar segar di rumah.",
+        "1. Cut romaine leaves and grilled chicken into small pieces. \n2. Add croutons and parmesan cheese. \n3. Drizzle with Caesar dressing. \n4. Mix well and serve.",
+      caption: "Enjoy fresh Caesar salad at home.",
       category: "Salad",
-      img_filename: "file-1697690636172.jpg",
+      img_filename: "caesar-salad.jpg",
     },
     {
       id: uuidv4(),
-      title: "Mie Goreng",
+      title: "Fried Noodles",
       ingredients:
         "Mie, Sayuran, Telur, Kecap manis, Bawang putih, Minyak goreng",
       instruction:
-        "1. Rebus mie hingga matang. \n2. Tumis bawang putih, sayuran, dan telur hingga sayuran layu. \n3. Tambahkan mie dan kecap manis. \n4. Aduk rata dan masak hingga panas. \n5. Sajikan dengan irisan mentimun.",
-      caption: "Nikmati mie goreng lezat di rumah.",
+        "1. Boil the noodles until cooked. \n2. Sauté garlic, vegetables, and egg until vegetables are wilted. \n3. Add noodles and sweet soy sauce. \n4. Stir well and cook until hot. \n5. Serve with cucumber slices.",
+      caption: "Enjoy delicious fried noodles at home.",
       category: "Main Course",
-      img_filename: "file-1697690636172.jpg",
+      img_filename: "mie-goreng.jpg",
     },
     {
       id: uuidv4(),
       title: "Pancake",
       ingredients:
-        "Tepung terigu, Telur, Susu, Gula, Baking powder, Minyak sayur",
+        "Wheat flour, eggs, milk, sugar, baking powder, vegetable oil",
       instruction:
-        "1. Campurkan tepung terigu, baking powder, gula, telur, dan susu. \n2. Panaskan minyak sayur di atas panci anti lengket. \n3. Tuangkan adonan pancake ke panci panas. \n4. Masak hingga muncul gelembung di permukaan. \n5. Balik pancake dan masak hingga kecokelatan. \n6. Sajikan dengan sirup maple atau buah-buahan.",
-      caption: "Nikmati pancake lezat di rumah.",
+        "1. Combine flour, baking powder, sugar, eggs, and milk. \n2. Heat vegetable oil on a non-stick pan. \n3. Pour the pancake batter onto the hot pan. \n4. Cook until bubbles appear on the surface. \n5. Flip the pancake and cook until browned. \n6. Serve with maple syrup or fruits.",
+      caption: "Enjoy delicious pancakes at home.",
       category: "Breakfast",
-      img_filename: "file-1697690636172.jpg",
+      img_filename: "pancake.jpg",
     },
   ]);
 };
