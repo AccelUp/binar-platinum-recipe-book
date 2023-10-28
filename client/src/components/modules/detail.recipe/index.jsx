@@ -30,8 +30,8 @@ const DetailRecipe = () => {
 
   return (
     <>
-      <section className="font-Poppins text-white body-font pt-8 sm:pt-24 bg-black overflow-hidden">
-        <div className="container px-5 py-8 sm:py-24 mx-auto">
+      <section className="font-Poppins text-white body-font sm:pt-24 bg-blackk overflow-hidden">
+        <div className="container px-5 py-6 sm:py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 sm:mt-6 lg:mt-0">
               <h1 className="text-primary text-4xl sm:text-3xl uppercase leading-relaxed tracking-widest title-font font-bold">
@@ -54,6 +54,9 @@ const DetailRecipe = () => {
                   <pre className="whitespace-pre-wrap">
                     {recipe.instruction}
                   </pre>
+                  <h3 className="mt-4 text-4xl sm:text-xl text-gray-600 font-normal leading-tight">
+                    {recipe.caption}
+                  </h3>
                 </div>
               </div>
             </div>
