@@ -1,7 +1,4 @@
-import {
-  runMigration,
-  destroyConnection,
-} from "../../db/migrations/run-migration";
+import { runMigration, destroyConnection } from "../../db/run-migration";
 import {
   getRecipes,
   addRecipes,
@@ -47,7 +44,7 @@ describe("getRecipesById", () => {
   it("Fetch one recipe from the database", async () => {
     const req = {
       params: {
-        id: "2be93241-00d5-44b3-aa2c-3842de618704",
+        id: "7c7349d2-f515-44ce-a15b-a08162950797",
       },
     };
     const res = {
