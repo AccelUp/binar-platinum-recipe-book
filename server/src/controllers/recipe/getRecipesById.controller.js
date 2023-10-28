@@ -1,5 +1,8 @@
-import { responseOk, responseError } from "../helpers/restResponse.helper.js";
-import CookBookModels from "../models/recipe.models.js";
+import {
+  responseOk,
+  responseError,
+} from "../../helpers/restResponse.helper.js";
+import CookBookModels from "../../models/recipe.models.js";
 
 const models = new CookBookModels();
 

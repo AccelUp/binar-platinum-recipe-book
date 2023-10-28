@@ -3,7 +3,14 @@ import { v4 } from "uuid";
 
 class RecipeModels {
   //Post addRecipes
-  async insert(title, ingredients, instruction, caption, category, imageFilename) {
+  async insert(
+    title,
+    ingredients,
+    instruction,
+    caption,
+    category,
+    imageFilename
+  ) {
     const newRecipe = {
       id: v4(),
       title,
@@ -25,7 +32,11 @@ class RecipeModels {
 
   //Get getRecipesById
   async findById(id) {
-    return await db.select("*").table("recipe").where({ id });
+    const resp = await db.select("*").table("recipe").where({ id });
+    if (resp.length > 0) {
+      return resp[0];
+    }
+    return null;
   }
 
   //Delete deleteRecipesById
