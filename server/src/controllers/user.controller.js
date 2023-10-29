@@ -4,9 +4,6 @@ import { responseOk, responseError } from "../helpers/restResponse.helper.js";
 import UsersModel from "../models/user.models.js";
 import UserProfileModel from "../models/userProfile.models.js";
 
-const JWT_ACCESS_SECRET = process.env.JWT_SECRET;
-const JWT_REFRESH_SECRET = process.env.JWT_SECRET;
-
 const users = new UsersModel();
 const userProfile = new UserProfileModel();
 
@@ -41,7 +38,7 @@ async function registerUser(req, res) {
   }
 }
 
-async function getUsers(req, res) {
+async function getUsers(_, res) {
   try {
     const user = await users.getAllUsers();
     return res.status(200).json(responseOk("Success Fetching Users", user));
