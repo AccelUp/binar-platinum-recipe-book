@@ -3,7 +3,6 @@ import path from "path";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    // media is the Upload_folder_name
     cb(null, "media");
   },
   filename: function (req, file, cb) {
@@ -11,8 +10,6 @@ const storage = multer.diskStorage({
   },
 });
 
-// Define the maximum size for uploading
-// picture i.e. 1 MB. it is optional
 const maxSize = 1024 * 1_0000;
 
 const uploadConfig = multer({
@@ -29,7 +26,11 @@ const uploadConfig = multer({
       return cb(null, true);
     }
 
-    cb("Error: File upload only supports the " + "following filetypes - " + filetypes);
+    cb(
+      "Error: File upload only supports the " +
+        "following filetypes - " +
+        filetypes
+    );
   },
 }).single("file");
 
