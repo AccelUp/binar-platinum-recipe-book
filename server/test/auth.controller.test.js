@@ -2,7 +2,7 @@ import { expect } from "chai";
 import sinon from "sinon";
 import * as bcrypt from "bcrypt";
 import UserModels from "../src/models/user.models.js";
-import { loginAndStoreTokens } from "../src/controllers/auth.controllers.js";
+import { loginAndStoreTokens } from "../src/controllers/user/auth.controllers.js";
 
 describe("Auth Controller", () => {
   let req, res;
