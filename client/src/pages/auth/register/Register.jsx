@@ -39,7 +39,7 @@ const Register = () => {
       try {
         const response = await dispatch(register(formData, navigate));
 
-        if (response.error) {
+        if (response.data.error) {
           setErrorText("Failed to register. Please check your credentials");
         }
       } catch (error) {

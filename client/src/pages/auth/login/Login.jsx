@@ -23,20 +23,33 @@ const Login = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleLoginError = (error) => {
+    if (error.response) {
+      const { status, data } = error.response;
+      if (status === 404) {
+        setErrorText("User not found. Please check your credentials.");
+      } else {
+        setErrorText(`Error: ${status} - ${data.message}`);
+      }
+    } else {
+      setErrorText("An error occurred while logging in.");
+    }
+  };
+
   const fetchLogin = async (e) => {
     e.preventDefault();
 
     if (formData.username === "" || formData.password === "") {
-      setErrorText("Username and password are required"); // Set pesan kesalahan
+      setErrorText("Username and password are required");
     } else {
       try {
         const response = await dispatch(login(formData, navigate));
         if (response.error) {
-          setErrorText("User not found. Please check your credentials.");
+          handleLoginError(response.error);
         }
       } catch (error) {
         console.error("Failed to fetch user data", error);
-        setErrorText("An error occurred while logging in.");
+        handleLoginError(error);
       }
     }
   };

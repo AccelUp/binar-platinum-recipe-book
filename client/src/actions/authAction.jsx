@@ -1,5 +1,5 @@
 import axios from "axios";
-const serverLogin = import.meta.env.VITE_SERVER_URL;
+const serverLogin = import.meta.env.VITE_SERVER_AUTH;
 const serverRegister = import.meta.env.VITE_SERVER_USER;
 
 export const login = (inputData, navigate) => async (dispatch) => {
@@ -10,16 +10,18 @@ export const login = (inputData, navigate) => async (dispatch) => {
     console.log("login success");
     dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
     navigate("/");
-  } catch (erorr) {
-    console.log("erorr", inputData, erorr);
+    return response; // Return the response to the caller
+  } catch (error) {
+    console.error("error", inputData, error);
     dispatch({
       type: "LOGIN_FAIL",
-      erorr: erorr,
+      error: error,
       modalMessage: {
         header: "Login Failed",
-        text: erorr.response.data.message,
+        text: error.response.data.message,
       },
     });
+    throw error; // Throw the error to the caller
   }
 };
 
@@ -34,19 +36,21 @@ export const register = (inputData, navigate) => async (dispatch) => {
       payload: response.data,
       modalMessage: {
         header: "Register Success",
-        text: erorr.response.data,
+        text: "Registration successful. You can now log in.",
       },
     });
     navigate("/");
-  } catch (erorr) {
-    console.log("erorr", inputData, erorr);
+    return response; // Return the response to the caller
+  } catch (error) {
+    console.error("error", inputData, error);
     dispatch({
       type: "REGISTER_FAIL",
-      erorr: erorr,
+      error: error,
       modalMessage: {
         header: "Register Failed",
-        text: erorr.response.data.message,
+        text: error.response.data.message,
       },
     });
+    throw error; // Throw the error to the caller
   }
 };
