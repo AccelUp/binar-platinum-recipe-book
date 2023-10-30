@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const serverLogin = import.meta.env.VITE_SERVER_URL;
 const serverRegister = import.meta.env.VITE_SERVER_USER;
 
@@ -10,14 +11,14 @@ export const login = (inputData, navigate) => async (dispatch) => {
     console.log("login success");
     dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
     navigate("/");
-  } catch (erorr) {
-    console.log("erorr", inputData, erorr);
+  } catch (error) {
+    console.error("error", inputData, error);
     dispatch({
       type: "LOGIN_FAIL",
-      erorr: erorr,
+      error: error,
       modalMessage: {
         header: "Login Failed",
-        text: erorr.response.data.message,
+        text: error.response.data.message,
       },
     });
   }
@@ -34,18 +35,18 @@ export const register = (inputData, navigate) => async (dispatch) => {
       payload: response.data,
       modalMessage: {
         header: "Register Success",
-        text: erorr.response.data,
+        text: response.data,
       },
     });
     navigate("/");
-  } catch (erorr) {
-    console.log("erorr", inputData, erorr);
+  } catch (error) {
+    console.error("error", inputData, error);
     dispatch({
       type: "REGISTER_FAIL",
-      erorr: erorr,
+      error: error,
       modalMessage: {
         header: "Register Failed",
-        text: erorr.response.data.message,
+        text: error.response.data.message,
       },
     });
   }
