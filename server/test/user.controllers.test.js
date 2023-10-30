@@ -6,7 +6,7 @@ import {
   getByID,
   updatePassword,
   registerUser,
-} from "../src/controllers/user.controller.js";
+} from "../src/controllers/user/user.controller.js";
 import UserModels from "../src/models/user.models.js";
 
 before(async () => {
@@ -43,7 +43,7 @@ describe("Controller User Test", () => {
   it("should return a user when a valid ID is provided", (done) => {
     const req = {
       params: {
-        id: "742405ea-ef81-461b-9a28-9f0b1f8a7528",
+        id: "5b59c79d-366a-499e-9812-92eb8dd49e4e",
       },
     };
 
@@ -64,9 +64,9 @@ describe("Controller User Test", () => {
   // Updata Password
   it("should update a recipe in the database", async () => {
     const req = {
-      params: { id: "742405ea-ef81-461b-9a28-9f0b1f8a7528" },
+      params: { id: "5b59c79d-366a-499e-9812-92eb8dd49e4e" },
       body: {
-        password: "inipassword",
+        password: "ono_ono",
       },
     };
 

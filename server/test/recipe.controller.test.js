@@ -6,7 +6,7 @@ import {
   getRecipesById,
   addRecipes,
   editRecipesById,
-} from "../src/controllers/recipe.controllers.js";
+} from "../src/controllers/recipe/recipe.controllers.js";
 import CookBookModels from "../src/models/recipe.models.js";
 
 before(async () => {
@@ -44,7 +44,7 @@ describe("Controller Recipe Test", () => {
   it("should return a recipe when a valid ID is provided", (done) => {
     const req = {
       params: {
-        id: "2bedeb4f-d99f-48e8-a2b3-f5a34b8c62bc",
+        id: "0d3da870-0618-4787-8c55-82ee1983024e",
       },
     };
 
@@ -83,7 +83,7 @@ describe("Controller Recipe Test", () => {
     };
 
     const fakeNewRecipe = {
-      id: "2bedeb4f-d99f-741a-as45-f5a34b8c62bc",
+      id: "0d3da870-0618-4787-8c55-82ee1983024e",
       title: "New Recipe",
       ingredients: "Ingredient 1, Ingredient 2",
       instruction: "Step 1, Step 2",
@@ -113,7 +113,7 @@ describe("Controller Recipe Test", () => {
 
   it("should update a recipe in the database", async () => {
     const req = {
-      params: { id: "2a7f6a65-3eac-4c1e-a1a1-30ac01a64674" },
+      params: { id: "0d3da870-0618-4787-8c55-82ee1983024e" },
       body: {
         title: "Bolang Gorang",
         ingredients:
