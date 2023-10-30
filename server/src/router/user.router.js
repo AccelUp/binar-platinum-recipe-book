@@ -14,7 +14,7 @@ const userPrefix = "/api/v1/users";
 
 userRouter.post(`${userPrefix}/register`, registerUser);
 userRouter.get(`${userPrefix}`, getUsers);
-userRouter.get(`${userPrefix}/profile`, getByID);
+userRouter.get(`${userPrefix}/profile/:id`, getByID);
 userRouter.put(`${userPrefix}/password/:id`, middleware, updatePassword);
 userRouter.delete(`${userPrefix}/:id`, middleware, deleteUsers);
 

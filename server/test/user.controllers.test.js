@@ -83,6 +83,8 @@ describe("Controller User Test", () => {
     expect(responseJSON).to.not.be.undefined;
   });
 
+  // Create User
+
   it("should create a user with valid data", async () => {
     // Stub the createUser function
     const createUserStub = sinon
