@@ -1,12 +1,6 @@
 import express from "express";
 import middleware from "../middlewares/authMiddleware.js";
-import {
-  registerUser,
-  getUsers,
-  getByID,
-  updatePassword,
-  deleteUsers,
-} from "../controllers/user.controller.js";
+import { registerUser, getUsers, getByID, updatePassword, deleteUsers } from "../controllers/user/user.controller.js";
 
 const userRouter = express.Router();
 

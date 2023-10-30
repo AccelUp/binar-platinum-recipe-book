@@ -1,9 +1,5 @@
 import express from "express";
-import {
-  loginAndStoreTokens,
-  logoutAndRemoveTokens,
-  refreshAccessToken,
-} from "../controllers/auth.controllers.js";
+import { loginAndStoreTokens, logoutAndRemoveTokens, refreshAccessToken } from "../controllers/user/auth.controllers.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = express.Router();

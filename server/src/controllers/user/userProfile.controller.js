@@ -1,5 +1,5 @@
-import { responseOk, responseError } from "../helpers/restResponse.helper.js";
-import userProfileModels from "../models/userProfile.models.js";
+import { responseOk, responseError } from "../../helpers/restResponse.helper.js";
+import userProfileModels from "../../models/userProfile.models.js";
 
 // const models = new userProfile()
 
