@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 shadow-lg bg-blackk mb-2 z-10">
-      <div className="text-primary  flex justify-between items-center h-20 max-w-[1240px] mx-auto  ">
+      <div className="text-primary flex justify-between items-center h-20 max-w-[1240px] mx-auto  ">
         <a
           className="ml-3 text-2xl text-primary font-bold cursor-pointer uppercase"
           href="/"
@@ -30,6 +30,9 @@ const Navbar = () => {
           </span>
           <span className="p-4 cursor-pointer text-primary font-bold hover:text-whitee ease-in-out duration-300">
             <a href={`/login`}>Login</a>
+          </span>
+          <span className="p-4 cursor-pointer text-primary font-bold hover:text-whitee ease-in-out duration-300">
+            <a href={`/signup`}>Sign Up</a>
           </span>
         </nav>
         <div onClick={handleNav} className="block md:hidden">

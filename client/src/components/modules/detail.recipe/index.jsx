@@ -8,7 +8,7 @@ const DetailRecipe = () => {
   const fetchRecipes = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v1/recipebook/recipes/${id}`
+        import.meta.env.VITE_SERVER_RECIPE + `/recipes/${id}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch recipe");
