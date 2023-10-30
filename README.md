@@ -1,6 +1,10 @@
-# binar-platinum-recipe-book
+# Binar Platinum Recipe Book
 
-Creating a structured web recipe book involves organizing your recipes and their related content in a user-friendly and accessible way.
+The Binar Platinum Recipe Book is a web application that allows users to create, edit, and delete recipes. The application is built using React and Express, two popular web development frameworks. With this application, users can add their own recipes to the database, search for recipes, and edit or delete existing recipes. The application also features user authentication and authorization, ensuring that only authorized users can access protected routes. Additionally, the application allows users to upload and download files.
+
+## API Documentation
+
+To view the API documentation for this project, please visit the following link: [Postman Documentation](https://documenter.getpostman.com/view/28570357/2s9YXb8QdS)
 
 ## Getting Started
 
@@ -19,7 +23,7 @@ Make sure you have Yarn installed on your machine. You can install Yarn by follo
 2. Navigate to the project directory:
 
    ```bash
-   cd react-todo-app
+   cd binar-platinum-recipe-book
    ```
 
 3. Install the project dependencies using Yarn:
@@ -28,9 +32,19 @@ Make sure you have Yarn installed on your machine. You can install Yarn by follo
    yarn install
    ```
 
+4. Create tables and insert some sample data in your database using:
+
+   ```bash
+   npx knex migrate:latest
+   ```
+
+   ```bash
+   npx knex seed:run
+   ```
+
 ### Usage
 
-Now that you have installed the necessary dependencies using Yarn, you can run the React Todo App locally.
+Now that you have installed the necessary dependencies using Yarn, you can run the Binar Platinum Recipe Book locally.
 
 1. Start the development server:
 
@@ -38,7 +52,7 @@ Now that you have installed the necessary dependencies using Yarn, you can run t
    yarn dev
    ```
 
-   This command will start the development server, and your app should be accessible at [http://localhost:5173/](http://localhost:5173/) in your web browser.
+   This command will start the development server, and your app should be accessible at [http://localhost:8000/](http://localhost:8000/) in your web browser.
 
 2. Start the development client:
 
@@ -46,24 +60,33 @@ Now that you have installed the necessary dependencies using Yarn, you can run t
    yarn start
    ```
 
-   This command will start the development server, and your app should be accessible at [http://localhost:8000](http://localhost:8000) in your web browser.
+   This command will start the development server, and your app should be accessible at [http://localhost:3000](http://localhost:3000) in your web browser.
 
 3. Start the development client and server using concurrently:
 
    ```bash
-   yarn start
+   yarn devStart
    ```
 
    This command will start both development server, and client.
 
 4. You can now use the app to create, read, update, and delete recipe.
 
-### Features
+## API Features
 
-- Create recipe: Add new recipe to your todo list.
-- Read recipe: View your list of recipe.
-- Update recipe: Edit and update task descriptions or status.
-- Delete recipe: Remove recipe from your list.
+- **Add Recipe**: This API adds a new recipe to the database.
+- **Edit Recipe**: This API updates the details of the recipe with the given id with the data provided.
+- **Delete Recipe**: This API deletes the recipe with the given id from the database.
+- **Get Recipes**: This API returns a list of all the recipes in the database.
+- **Search Recipes**: This API searches for recipes based on ingredients.
+
+## User Features
+
+- **Register User**: This API registers a new user.
+- **Login User**: This API logs in an existing user.
+- **Logout User**: This API logs out an existing user.
+- **Refresh Token**: This API refreshes an expired token.
+- **Protected Route**: This API returns a list of all the protected routes.
 
 ### Contributing
 
@@ -71,4 +94,4 @@ If you'd like to contribute to this project, please fork the repository, make yo
 
 ### License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
