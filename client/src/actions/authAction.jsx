@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const serverLogin = import.meta.env.VITE_SERVER_URL;
+const serverLogin = import.meta.env.VITE_SERVER_AUTH;
 const serverRegister = import.meta.env.VITE_SERVER_USER;
 
 export const login = (inputData, navigate) => async (dispatch) => {
@@ -11,6 +10,7 @@ export const login = (inputData, navigate) => async (dispatch) => {
     console.log("login success");
     dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
     navigate("/");
+    return response; // Return the response to the caller
   } catch (error) {
     console.error("error", inputData, error);
     dispatch({
@@ -21,6 +21,7 @@ export const login = (inputData, navigate) => async (dispatch) => {
         text: error.response.data.message,
       },
     });
+    throw error; // Throw the error to the caller
   }
 };
 
@@ -35,10 +36,11 @@ export const register = (inputData, navigate) => async (dispatch) => {
       payload: response.data,
       modalMessage: {
         header: "Register Success",
-        text: response.data,
+        text: "Registration successful. You can now log in.",
       },
     });
     navigate("/");
+    return response; // Return the response to the caller
   } catch (error) {
     console.error("error", inputData, error);
     dispatch({
@@ -49,5 +51,6 @@ export const register = (inputData, navigate) => async (dispatch) => {
         text: error.response.data.message,
       },
     });
+    throw error; // Throw the error to the caller
   }
 };
