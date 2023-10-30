@@ -2,7 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import cors from "cors";
-import router from "./src/views/router.js";
+import router from "./src/router/router.js";
 import dotenv from "dotenv";
 import swaggerUi from "swagger-ui-express";
 import specs from "./swagger-output.json" assert { type: "json" };

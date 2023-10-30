@@ -1,5 +1,5 @@
 import express from "express";
-import { getUserProfile, updateUserProfile, deleteUserProfile } from "../controllers/userProfile.controller.js";
+import { getUserProfile, updateUserProfile, deleteUserProfile } from "../controllers/user/userProfile.controller.js";
 
 const router = express.Router();
 const prefixPath = "api/v1/user-profile";
