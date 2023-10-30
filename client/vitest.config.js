@@ -2,6 +2,7 @@
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
+  framework: "react",
   test: {
     globals: true,
     coverage: {
@@ -11,6 +12,4 @@ export default defineConfig({
   },
   testPath: "__tests__",
   testFramework: "vitest",
-  browser: "jsdom",
-  plugins: ["@vitest/plugin-vue"],
 });

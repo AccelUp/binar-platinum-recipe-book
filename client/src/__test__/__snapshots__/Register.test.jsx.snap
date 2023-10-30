@@ -1,0 +1,105 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Register Component > should render the Register component correctly 1`] = `
+<div
+  className="_Register_424735 relative pt-20"
+>
+  <div
+    className="flex flex-col items-center justify-center px-6 py-10 mx-auto md:h-screen lg:py-0"
+  >
+    <div
+      className="w-full bg-black rounded-md shadow md:mt-0 sm:max-w-md xl:p-0"
+    >
+      <div
+        className="p-6 space-y-4 md:space-y-6 sm:p-8"
+      >
+        <h1
+          className="text-center text-primary font-bold leading-tight tracking-tight md:text-2xl"
+        >
+          Sign up
+        </h1>
+        <form
+          className="space-y-4"
+          onSubmit={[Function]}
+        >
+          <div
+            className="mb-4"
+          >
+            <label
+              className="block font-semibold text-primary mb-2"
+              htmlFor="username"
+            >
+              Username
+            </label>
+            <input
+              className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
+              id="username"
+              name="username"
+              onChange={[Function]}
+              placeholder="Enter your username"
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            className="mb-4"
+          >
+            <label
+              className="block font-semibold text-primary mb-2"
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <input
+              className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
+              id="password"
+              name="password"
+              onChange={[Function]}
+              placeholder="Enter your password"
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            className="mb-4"
+          >
+            <label
+              className="block font-semibold text-primary mb-2"
+              htmlFor="confirmPassword"
+            >
+              Confirm Password
+            </label>
+            <input
+              className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
+              id="confirmPassword"
+              name="confirmPassword"
+              onChange={[Function]}
+              placeholder="Confirm your password"
+              type="password"
+              value=""
+            />
+          </div>
+          <button
+            className="bg-primary hover:bg-black hover:text-primary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Register
+          </button>
+        </form>
+        <h2
+          className="mb-2 text-sm pt-2"
+        >
+          Already have an account?
+           
+          <span
+            className="text-primary cursor-pointer"
+            onClick={[Function]}
+          >
+            Login
+          </span>
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+`;

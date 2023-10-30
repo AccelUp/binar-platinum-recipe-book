@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.
 .env
-
+coverage
 
 # Editor directories and files
 .vscode/*
