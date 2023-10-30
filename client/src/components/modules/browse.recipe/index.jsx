@@ -9,7 +9,7 @@ const BrowseRecipe = () => {
     const fetchRecipes = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/v1/recipebook/recipes"
+          import.meta.env.VITE_SERVER_RECIPE + "/recipes"
         );
         if (response.ok) {
           const data = await response.json();

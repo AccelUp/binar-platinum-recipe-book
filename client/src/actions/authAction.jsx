@@ -1,10 +1,11 @@
 import axios from "axios";
-const url = import.meta.env.VITE_SERVER_URL;
+const serverLogin = import.meta.env.VITE_SERVER_URL;
+const serverRegister = import.meta.env.VITE_SERVER_USER;
 
 export const login = (inputData, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "LOADING" });
-    const response = await axios.post(url + `/login`, inputData);
+    const response = await axios.post(serverLogin + `/login`, inputData);
     localStorage.setItem("token", response.data.token);
     console.log("login success");
     dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
@@ -25,7 +26,7 @@ export const login = (inputData, navigate) => async (dispatch) => {
 export const register = (inputData, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "LOADING" });
-    const response = await axios.post(url + `/register`, inputData);
+    const response = await axios.post(serverRegister + `/register`, inputData);
     localStorage.setItem("token", response.data.token);
     console.log("register success");
     dispatch({

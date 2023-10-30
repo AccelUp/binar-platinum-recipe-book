@@ -8,7 +8,7 @@ const Users = () => {
     const fetchUsers = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/v1/recipebook/user/users"
+          import.meta.env.VITE_SERVER_RECIPE + "/users"
         );
         if (response.ok) {
           const data = await response.json();
