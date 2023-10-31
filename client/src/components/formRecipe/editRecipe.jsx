@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const AddRecipe = () => {
+const URL_RECIPE = import.meta.env.VITE_SERVER_RECIPE;
+const EditRecipe = ({ recipeId }) => {
   const [image, setImage] = useState({ file: null, show: null });
   const [recipe, setRecipe] = useState({
     caption: "",
@@ -13,50 +14,47 @@ const AddRecipe = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
+  useEffect(() => {
+    const fetchRecipeData = async () => {
+      try {
+        const response = await axios.get(URL_RECIPE + recipeId);
+        const { caption, title, ingredients, instruction, category } =
+          response.data;
+        setRecipe({ caption, title, ingredients, instruction, category });
+      } catch (error) {
+        console.error("Error:", error);
+        setErrorMessage("Error fetching recipe data.");
+      }
+    };
+
+    fetchRecipeData();
+  }, [recipeId]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRecipe({ ...recipe, [name]: value });
   };
 
-  const handlePostRecipe = async (e) => {
+  const handleEditRecipe = async (e) => {
     e.preventDefault();
 
-    if (!image.file) {
-      setErrorMessage("Please select an image for the recipe.");
-      return;
-    }
-
-    if (
-      !recipe.title ||
-      !recipe.caption ||
-      !recipe.category ||
-      !recipe.instruction
-    ) {
-      setErrorMessage("Please fill in all required fields.");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("file", image.file);
-
-    for (const key in recipe) {
-      formData.append(key, recipe[key]);
-    }
-
     try {
-      const response = await axios.post(
-        import.meta.env.VITE_SERVER_RECIPE + "/add",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const formData = new FormData();
+      formData.append("file", image.file);
+
+      for (const key in recipe) {
+        formData.append(key, recipe[key]);
+      }
+
+      const response = await axios.put(URL_RECIPE + recipeId, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       if (response.status === 200) {
-        setSuccessMessage("Recipe added successfully");
-        clearSuccessMessageAfterDelay(); // Menambahkan ini untuk menghapus notifikasi setelah beberapa detik
+        setSuccessMessage("Recipe updated successfully");
+        clearSuccessMessageAfterDelay();
       }
     } catch (error) {
       setErrorMessage("Error: " + error.message);
@@ -74,21 +72,21 @@ const AddRecipe = () => {
   const clearSuccessMessageAfterDelay = () => {
     setTimeout(() => {
       setSuccessMessage("");
-    }, 5000); // Notifikasi akan hilang setelah 5 detik
+    }, 5000);
   };
 
   return (
     <section className="bg-blackk font-Poppins">
       <div className="max-w-lg pt-16 h-screen lg:ms-auto mx-auto text-center">
-        <div className="py-7 px-7 rounded-md bg-blackk ">
-          <h2 className="text-4xl text-primary mb-4 font-bold">Add Recipe</h2>
+        <div className="py-7 px-7 rounded-md bg-blackk">
+          <h2 className="text-4xl text-primary mb-4 font-bold">Edit Recipe</h2>
           {errorMessage && (
             <div className="text-red-500 mb-4">{errorMessage}</div>
           )}
           {successMessage && (
             <div className="text-green-500 mb-4">{successMessage}</div>
           )}
-          <form onSubmit={handlePostRecipe}>
+          <form onSubmit={handleEditRecipe}>
             <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
               {["title", "caption", "category"].map((field) => (
                 <input
@@ -140,9 +138,9 @@ const AddRecipe = () => {
               <div className="md:col-span-2">
                 <button
                   type="submit"
-                  className="py-3 text-base font-medium rounded border border-primary text-primary bg-blackk w-full hover:bg-primary hover:text-black transition duration-300"
+                  className="py-3 text-base font-medium rounded border border-primary text-primary bg-blackk w-full hover-bg-primary hover-text-black transition duration-300"
                 >
-                  Post Recipe
+                  Update Recipe
                 </button>
               </div>
             </div>
@@ -153,4 +151,4 @@ const AddRecipe = () => {
   );
 };
 
-export default AddRecipe;
+export default EditRecipe;
