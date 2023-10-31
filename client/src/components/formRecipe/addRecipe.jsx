@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { postRecipe } from "../../actions/recipeAction";
+import React, { useState } from "react";
+import axios from "axios";
 
 const AddRecipe = () => {
   const [image, setImage] = useState({ file: null, show: null });
@@ -8,19 +7,31 @@ const AddRecipe = () => {
     caption: "",
     title: "",
     ingredients: "",
+    instruction: "",
     category: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
-  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRecipe({ ...recipe, [name]: value });
   };
 
-  const handlePostRecipe = (e) => {
+  const handlePostRecipe = async (e) => {
+    e.preventDefault();
+
     if (!image.file) {
       setErrorMessage("Please select an image for the recipe.");
+      return;
+    }
+
+    if (
+      !recipe.title ||
+      !recipe.caption ||
+      !recipe.category ||
+      !recipe.instruction
+    ) {
+      setErrorMessage("Please fill in all required fields.");
       return;
     }
 
@@ -31,7 +42,25 @@ const AddRecipe = () => {
       formData.append(key, recipe[key]);
     }
 
-    dispatch(postRecipe(formData));
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_SERVER_RECIPE + "/add",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("Recipe added successfully");
+        // Add your code for what to do after successfully adding a recipe (e.g., redirecting the user to another page)
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      // Handle any errors that occur when uploading the recipe
+    }
   };
 
   const handleChangeImage = (e) => {
@@ -50,8 +79,6 @@ const AddRecipe = () => {
             <div className="text-red-500 mb-4">{errorMessage}</div>
           )}
           <form onSubmit={handlePostRecipe}>
-            {" "}
-            {/* Added onSubmit handler */}
             <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
               {["title", "caption", "category"].map((field) => (
                 <input
@@ -82,6 +109,16 @@ const AddRecipe = () => {
               </div>
               <div className="md:col-span-2">
                 <textarea
+                  name="instruction"
+                  rows="5"
+                  placeholder="Instruction"
+                  className="w-full border border-primary rounded-md py-2 px-3 focus:outline-none focus-border-prim"
+                  value={recipe.instruction}
+                  onChange={handleChange}
+                ></textarea>
+              </div>
+              <div className="md:col-span-2">
+                <textarea
                   name="ingredients"
                   rows="5"
                   placeholder="Ingredients (use ',' to separate)"
@@ -92,7 +129,7 @@ const AddRecipe = () => {
               </div>
               <div className="md:col-span-2">
                 <button
-                  type="submit" // Added type attribute
+                  type="submit"
                   className="py-3 text-base font-medium rounded text-primary bg-blackk w-full hover:bg-primary hover:text-black transition duration-300"
                 >
                   Post Recipe
