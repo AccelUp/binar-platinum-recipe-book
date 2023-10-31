@@ -35,7 +35,7 @@ export const postRecipe = (inputData) => {
   return async (dispatch) => {
     try {
       dispatch({ type: "PENDING" });
-      const response = await axios.post(`${serverUrl}/recipe`, inputData, {
+      const response = await axios.post(`${serverUrl}/add`, inputData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           "Content-Type": "application/json",

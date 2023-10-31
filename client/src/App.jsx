@@ -7,6 +7,7 @@ import Login from "./pages/auth/login/Login";
 import Register from "./pages/auth/register/Register";
 import Recipe from "./components/modules/detail.recipe";
 import BrowseRecipe from "./components/modules/browse.recipe";
+import AddRecipe from "./components/formRecipe/addRecipe";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/recipes/:id" element={<Recipe />} />
           <Route path="/browserecipe" element={<BrowseRecipe />} />
-          <Route path="/users" element={<Users />} />
+          <Route path="/addRecipe" element={<AddRecipe />} />
+
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Register />} />
         </Routes>
