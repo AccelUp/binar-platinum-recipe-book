@@ -26,17 +26,21 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 shadow-lg bg-blackk mb-2 z-10">
+    <div className="fixed top-0 left-0 right-0 shadow-lg bg-black z-10">
       <div className="text-primary flex justify-between items-center h-20 max-w-[1240px] mx-auto  ">
         <a
           className="ml-3 text-2xl text-primary font-bold cursor-pointer uppercase"
-          href="/"
+          href="/dashboard"
         >
           Creative Kitchen
         </a>
         <nav className="hidden  uppercase md:flex">
           <span className="p-4 cursor-pointer text-primary font-bold hover:text-whitee ease-in-out duration-300">
-            <a href={`/browserecipe`}>Browse Recipe</a>
+            <a href={`/browserecipe`}>Profile</a>
+          </span>
+
+          <span className="p-4 cursor-pointer text-primary font-bold hover:text-whitee ease-in-out duration-300">
+            {/* <a href={`/browserecipe`}>Browse Recipe</a> */}
           </span>
           <span className="p-4 cursor-pointer text-primary font-bold hover:text-whitee ease-in-out duration-300">
             <a onClick={handleLogout} href={`/`}>
@@ -68,6 +72,11 @@ const Navbar = () => {
               className="p-1 text-blackk mt-4 ml-4"
             />
             <ul className="uppercase md:hidden bg-primary">
+              <li className="p-4 border-b border-blackk cursor-pointer text-black hover:text-slate-900 ease-in-out duration-300">
+                <a onClick={handleLogout} href={`/`}>
+                  Profile
+                </a>
+              </li>
               {/* <li className="p-4 border-b border-blackk cursor-pointer text-black hover:text-slate-900 ease-in-out duration-300">
                 <a href={`/browserecipe`}>Browse Recipe</a>
               </li> */}
