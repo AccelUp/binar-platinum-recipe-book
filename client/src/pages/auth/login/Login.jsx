@@ -44,7 +44,10 @@ const Login = () => {
     } else {
       try {
         const response = await dispatch(login(formData, navigate));
-        if (response.error) {
+        if (!response.error) {
+          // Successful login, navigate to the dashboard
+          navigate("/dashboard");
+        } else {
           handleLoginError(response.error);
         }
       } catch (error) {
