@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const BrowseRecipe = () => {
   const [recipes, setRecipes] = useState([]);
@@ -8,12 +9,12 @@ const BrowseRecipe = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch(
+        const response = await axios.get(
           import.meta.env.VITE_SERVER_RECIPE + "/recipes"
         );
-        if (response.ok) {
-          const data = await response.json();
-          setRecipes(data.data.recipe);
+
+        if (response.status === 200) {
+          setRecipes(response.data.data.recipe);
         } else {
           console.error("Failed to fetch recipe data.");
         }

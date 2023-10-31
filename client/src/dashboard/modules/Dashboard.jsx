@@ -21,7 +21,7 @@ const Dashboard = () => {
                 </svg>
               </div>
               <div className="w-1/4 md:w-auto md:flex text-right">
-                <div className="hidden md:block md:flex md:items-center ml-2">
+                <div className="hidden  md:flex md:items-center ml-2">
                   <div>
                     <svg
                       className="fill-current text-pribg-primary h-4 w-4 block opacity-50"
