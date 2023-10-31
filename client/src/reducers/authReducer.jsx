@@ -1,7 +1,7 @@
 const initialState = {
   user: {},
-  accessToken: null,
-  refreshToken: null,
+  access_token: null,
+  refresh_token: null,
   authLoading: false,
   isError: false,
   error: null,
@@ -23,8 +23,8 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload.user,
-        accessToken: action.payload.accessToken,
-        refreshToken: action.payload.refreshToken,
+        access_token: action.payload.access_token,
+        refresh_token: action.payload.refresh_token,
         authLoading: false,
       };
     case "LOGIN_FAILED":
@@ -38,7 +38,7 @@ export const authReducer = (state = initialState, action) => {
         authLoading: false,
       };
     case "LOGOUT":
-      console.log({ action });
+      // console.log({ action });
       return {
         ...state,
         user: {},
@@ -50,8 +50,8 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload.user,
-        accessToken: action.payload.accessToken,
-        refreshToken: action.payload.refreshToken,
+        access_token: action.payload.access_token,
+        refresh_token: action.payload.refresh_token,
         showModal: true,
         modalMessage: action.modalMessage,
         authLoading: false,

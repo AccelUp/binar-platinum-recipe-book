@@ -1,9 +1,9 @@
 import { Navigate } from "react-router-dom";
 
 const AuthChecker = ({ children }) => {
-  let token = localStorage.getItem("token");
-  if (token) {
-    return <Navigate to="/browserecipe" replace="true" />;
+  let access_token = localStorage.getItem("access_token");
+  if (access_token) {
+    return <Navigate to="/dashboard" replace="true" />;
   }
   return children;
 };

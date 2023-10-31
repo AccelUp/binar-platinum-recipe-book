@@ -8,6 +8,7 @@ import Register from "./pages/auth/register/Register";
 import Recipe from "./components/modules/detail.recipe";
 import BrowseRecipe from "./components/modules/browse.recipe";
 import AddRecipe from "./components/formRecipe/addRecipe";
+import Dashboard from "./dashboard/modules/Dashboard";
 
 function App() {
   return (
@@ -22,6 +23,16 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Register />} />
+        </Routes>
+        <Routes>
+          <Route
+            path="/dashboard"
+            element={
+              <>
+                <Dashboard />
+              </>
+            }
+          />
         </Routes>
         <Footer />
       </>
