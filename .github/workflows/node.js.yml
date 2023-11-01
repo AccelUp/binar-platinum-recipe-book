@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Node.js CI and Deployment
 
 on:
   push:
@@ -39,3 +39,35 @@ jobs:
 
       - name: Run server tests
         run: cd server && yarn test
+
+      - name: Deploy to _work directory
+        run: |
+          # Copy your built application to a directory that will be saved as an artifact
+          mkdir -p ${{ runner.workspace }}/_work
+          cp -r client/dist ${{ runner.workspace }}/_work/client
+          cp -r server ${{ runner.workspace }}/_work/server
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: website
+          path: ${{ runner.workspace }}/_work
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    needs: build
+
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: website
+          path: ${{ runner.workspace }}/_work
+
+      - name: Deploy to Web Server
+        run: |
+          # You can deploy your website from the _work directory here
+          # For example, you can use a tool like rsync or SCP to copy the files to your web server
+          # Make sure you set up appropriate credentials and paths for your deployment
+
