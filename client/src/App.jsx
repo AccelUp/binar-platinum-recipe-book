@@ -6,10 +6,11 @@ import Login from "./pages/auth/login/Login";
 import Register from "./pages/auth/register/Register";
 import Recipe from "./components/modules/detail.recipe";
 import BrowseRecipe from "./components/modules/browse.recipe";
-import AddRecipe from "./components/formRecipe/addRecipe";
+import AddRecipe from "./components/formRecipe/AddRecipe";
 import Dashboard from "./dashboard/modules/Dashboard";
 import AuthChecker from "./components/authChecker/AuthChecker";
 import EditRecipe from "./components/formRecipe/editRecipe";
+import UserActivation from "./components/userActivation/UserActivation";
 
 function App() {
   return (

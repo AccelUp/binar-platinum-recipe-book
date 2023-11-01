@@ -36,7 +36,7 @@ const Navbar = () => {
         </a>
         <nav className="hidden  uppercase md:flex">
           <span className="p-4 cursor-pointer text-primary font-bold hover:text-whitee ease-in-out duration-300">
-            <a href={`/browserecipe`}>Profile</a>
+            <a href={`/profile`}>Profile</a>
           </span>
 
           <span className="p-4 cursor-pointer text-primary font-bold hover:text-whitee ease-in-out duration-300">
@@ -73,9 +73,7 @@ const Navbar = () => {
             />
             <ul className="uppercase md:hidden bg-primary">
               <li className="p-4 border-b border-blackk cursor-pointer text-black hover:text-slate-900 ease-in-out duration-300">
-                <a onClick={handleLogout} href={`/`}>
-                  Profile
-                </a>
+                <a href={`/profile`}>Profile</a>
               </li>
               {/* <li className="p-4 border-b border-blackk cursor-pointer text-black hover:text-slate-900 ease-in-out duration-300">
                 <a href={`/browserecipe`}>Browse Recipe</a>
