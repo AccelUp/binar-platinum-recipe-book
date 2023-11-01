@@ -7,11 +7,11 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14]
+        node-version: [14, 16, 18]
 
     steps:
       - name: Checkout code
@@ -25,14 +25,24 @@ jobs:
       - name: Install Yarn
         run: npm install -g yarn
 
-      - name: Install dependencies
+      - name: Install server dependencies
+        working-directory: ../../server
         run: yarn install
 
-      - name: Build project
+      - name: Install client dependencies
+        working-directory: ../../client
+        run: yarn install
+
+      - name: Build client
+        working-directory: ../../client
         run: yarn build
 
       - name: Run client tests
-        run: cd client && yarn test
+        working-directory: ../../client
+        run: yarn test
 
       - name: Run server tests
-        run: cd ../server && yarn test
+        working-directory: ../../server/
+        run: yarn test
+
+
