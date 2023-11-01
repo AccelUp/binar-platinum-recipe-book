@@ -27,11 +27,11 @@ jobs:
 
       - name: Install server dependencies
         working-directory: ../../server
-        run: yarn install
+        run: yarn
 
       - name: Install client dependencies
         working-directory: ../../client
-        run: yarn install
+        run: yarn
 
       - name: Build client
         working-directory: ../../client
@@ -44,5 +44,3 @@ jobs:
       - name: Run server tests
         working-directory: ../../server/
         run: yarn test
-
-
