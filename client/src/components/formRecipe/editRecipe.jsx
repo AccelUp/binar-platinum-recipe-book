@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const URL_RECIPE = import.meta.env.VITE_SERVER_RECIPE;
-const EditRecipe = ({ recipeId }) => {
+const EditRecipe = () => {
+  const { id } = useParams();
+
   const [image, setImage] = useState({ file: null, show: null });
   const [recipe, setRecipe] = useState({
     caption: "",
@@ -17,7 +19,9 @@ const EditRecipe = ({ recipeId }) => {
   useEffect(() => {
     const fetchRecipeData = async () => {
       try {
-        const response = await axios.get(URL_RECIPE + recipeId);
+        const response = await axios.get(
+          import.meta.env.VITE_SERVER_RECIPE + `/recipes/${id}`
+        ); // Use backticks to create the URL
         const { caption, title, ingredients, instruction, category } =
           response.data;
         setRecipe({ caption, title, ingredients, instruction, category });
@@ -28,8 +32,7 @@ const EditRecipe = ({ recipeId }) => {
     };
 
     fetchRecipeData();
-  }, [recipeId]);
-
+  }, [id]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRecipe({ ...recipe, [name]: value });
@@ -46,11 +49,15 @@ const EditRecipe = ({ recipeId }) => {
         formData.append(key, recipe[key]);
       }
 
-      const response = await axios.put(URL_RECIPE + recipeId, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.put(
+        import.meta.env.VITE_SERVER_RECIPE + `/edit/${id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       if (response.status === 200) {
         setSuccessMessage("Recipe updated successfully");
