@@ -45,8 +45,9 @@ const Login = () => {
       try {
         const response = await dispatch(login(formData, navigate));
         if (!response.error) {
-          // Successful login, navigate to the dashboard
           navigate("/dashboard");
+
+          localStorage.setItem("userToken", response.token);
         } else {
           handleLoginError(response.error);
         }
@@ -56,7 +57,6 @@ const Login = () => {
       }
     }
   };
-
   return (
     <div className={`${classes.Login} relative pt-10`}>
       <div className="h-screen flex justify-center items-center">

@@ -5,8 +5,14 @@ import axios from "axios";
 const BrowseRecipe = () => {
   const [recipes, setRecipes] = useState([]);
   const [query, setQuery] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    // Lakukan otentikasi pengguna di sini dan atur status isLoggedIn.
+    // Misalnya, Anda dapat memeriksa apakah pengguna memiliki token otentikasi.
+    const userToken = localStorage.getItem("userToken");
+    setIsLoggedIn(!!userToken);
+
     const fetchRecipes = async () => {
       try {
         const response = await axios.get(
@@ -45,8 +51,12 @@ const BrowseRecipe = () => {
   };
 
   return (
-    <div className="bg-blackk pt-20 text-primary font-Poppins">
-      <h2 className="text-5xl font-semibold text-center pt-10 ">
+    <div
+      className={`bg-blackk pt-20 text-primary font-Poppins ${
+        isLoggedIn ? "after-login-layout" : "before-login-layout"
+      }`}
+    >
+      <h2 className="text-5xl font-semibold text-center pt-10">
         Browse All recipe
       </h2>
       <div className="container mx-auto px-4 md:px-8 py-8">
