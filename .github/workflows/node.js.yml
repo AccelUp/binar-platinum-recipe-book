@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14, 16, 18]
+        node-version: [18]
 
     steps:
       - name: Checkout code
@@ -26,21 +26,16 @@ jobs:
         run: npm install -g yarn
 
       - name: Install server dependencies
-        working-directory: ../../server
-        run: yarn
+        run: cd server && yarn
 
       - name: Install client dependencies
-        working-directory: ../../client
-        run: yarn
+        run: cd client && yarn
 
       - name: Build client
-        working-directory: ../../client
-        run: yarn build
+        run: cd client && yarn build
 
       - name: Run client tests
-        working-directory: ../../client
-        run: yarn test
+        run: cd client && yarn test
 
       - name: Run server tests
-        working-directory: ../../server/
-        run: yarn test
+        run: cd server && yarn test
