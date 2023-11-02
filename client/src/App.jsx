@@ -10,7 +10,7 @@ import AddRecipe from "./components/formRecipe/addRecipe";
 import Dashboard from "./dashboard/modules/Dashboard";
 import AuthChecker from "./components/authChecker/AuthChecker";
 import EditRecipe from "./components/formRecipe/editRecipe";
-import UserActivation from "./components/authChecker/UserActivation";
+// import UserActivation from "./components/authChecker/UserActivation";
 import { useState } from "react";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,7 +21,7 @@ function App() {
         <Navbar isLoggedIn={isLoggedIn} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/activate" element={<UserActivation />} />
+          {/* <Route path="/activate" element={<UserActivation />} /> */}
           <Route path="/recipes/:id" element={<Recipe />} />
           <Route path="/browserecipe" element={<BrowseRecipe />} />
           <Route path="/login" element={<Login />} />
@@ -33,8 +33,8 @@ function App() {
             }
           />
           <Route path="/dashboard/*" element={<Dashboard />} />
-          <Route path="/addRecipe" element={<AddRecipe />} />
-          <Route path="/edit/:id" element={<EditRecipe />} />
+          {/* <Route path="/addRecipe" element={<AddRecipe />} />
+          <Route path="/edit/:id" element={<EditRecipe />} /> */}
         </Routes>
         <Footer />
       </div>
