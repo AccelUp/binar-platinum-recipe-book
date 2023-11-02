@@ -8,7 +8,7 @@ const PopularRecipe = () => {
     const fetchRecipes = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/v1/recipebook/recipes"
+          "https://binar-platinum-db.fly.dev/api/v1/recipebook/recipes"
         );
         if (response.ok) {
           const data = await response.json();
