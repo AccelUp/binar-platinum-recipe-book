@@ -57,7 +57,7 @@ const Navbar = ({ isLogin }) => {
                 <Link to="/addRecipe">Add Recipe</Link>
               </span>
               <span className="p-4 cursor-pointer text-primary font-bold hover:text-whitee ease-in-out duration-300">
-                <Link to="/logout" onClick={handleLogout}>
+                <Link to="/" onClick={handleLogout}>
                   Logout
                 </Link>
               </span>

@@ -18,7 +18,6 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar isLoggedIn={isLoggedIn} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/activate" element={<UserActivation />} />
@@ -26,12 +25,6 @@ function App() {
           <Route path="/browserecipe" element={<BrowseRecipe />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Register />} />
-          <Route
-            path="/*"
-            element={
-              <AuthChecker>{isLoggedIn ? <Dashboard /> : <Home />}</AuthChecker>
-            }
-          />
           <Route path="/dashboard/*" element={<Dashboard />} />
           <Route path="/addRecipe" element={<AddRecipe />} />
           <Route path="/edit/:id" element={<EditRecipe />} />
